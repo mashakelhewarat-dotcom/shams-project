@@ -1,0 +1,224 @@
+{
+  "g2972o0e6ufmnj66mma": {
+    "interaction_count": 8,
+    "phase": 3,
+    "hidden_state": "silent",
+    "intents": [
+      "محبة",
+      "maymun",
+      "الخاتم السليماني",
+      "burqan",
+      "القبول والجاه",
+      "المحبة والتهييج"
+    ],
+    "unique_intents": 6,
+    "repeated_questions": 0,
+    "last_question": "طارقالمحبة والتهييج",
+    "avg_hesitation": 0.5,
+    "avg_typing_speed": 88.125,
+    "avg_input_length": 3.625,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 4,
+    "total_speed": 705,
+    "total_length": 29,
+    "first_seen": "2026-04-05T07:27:35.588998",
+    "last_seen": "2026-04-09T08:11:41.883941",
+    "sessions": 2,
+    "ending_reached": "default",
+    "achievements": [
+      "deep_seeker",
+      "first_blood",
+      "silent_one",
+      "phase_3"
+    ],
+    "phase_history": [
+      1,
+      2,
+      3
+    ]
+  },
+  "c6d0ca0cd51f5d5e": {
+    "interaction_count": 40,
+    "phase": 5,
+    "hidden_state": "looped_mind",
+    "intents": [
+      "فحص النظام"
+    ],
+    "unique_intents": 1,
+    "repeated_questions": 39,
+    "last_question": "اختبارفحص النظام",
+    "avg_hesitation": 0.0,
+    "avg_typing_speed": 100.0,
+    "avg_input_length": 5.0,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 0,
+    "total_speed": 4000,
+    "total_length": 200,
+    "first_seen": "2026-04-10T04:01:22.544648",
+    "last_seen": "2026-04-17T23:20:44.057717",
+    "sessions": 4,
+    "ending_reached": "default",
+    "achievements": [
+      "returning",
+      "repeater",
+      "convergence",
+      "phase_3",
+      "first_blood",
+      "phase_4"
+    ],
+    "phase_history": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "d369c645d58f8807": {
+    "interaction_count": 1,
+    "phase": 1,
+    "hidden_state": "observer",
+    "intents": [
+      "محبة"
+    ],
+    "unique_intents": 1,
+    "repeated_questions": 0,
+    "last_question": "اختبارمحبة",
+    "avg_hesitation": 1.0,
+    "avg_typing_speed": 90.0,
+    "avg_input_length": 4.0,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 1,
+    "total_speed": 90,
+    "total_length": 4,
+    "first_seen": "2026-04-10T04:07:24.280315",
+    "last_seen": "2026-04-10T04:07:24.324268",
+    "sessions": 0,
+    "ending_reached": "default",
+    "achievements": [
+      "first_blood"
+    ],
+    "phase_history": [
+      1
+    ]
+  },
+  "dc4c4543f28c2514": {
+    "interaction_count": 3,
+    "phase": 2,
+    "hidden_state": "observer",
+    "intents": [],
+    "unique_intents": 0,
+    "repeated_questions": 2,
+    "last_question": "محمد",
+    "avg_hesitation": 0.0,
+    "avg_typing_speed": 100.0,
+    "avg_input_length": 4.0,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 0,
+    "total_speed": 300,
+    "total_length": 12,
+    "first_seen": "2026-04-10T23:13:58.243932",
+    "last_seen": "2026-04-11T04:00:21.741386",
+    "sessions": 1,
+    "ending_reached": "default",
+    "achievements": [
+      "first_blood",
+      "repeater"
+    ],
+    "phase_history": [
+      1,
+      2
+    ]
+  },
+  "test-session-001": {
+    "interaction_count": 0,
+    "phase": 1,
+    "hidden_state": "observer",
+    "intents": [],
+    "unique_intents": 0,
+    "repeated_questions": 0,
+    "last_question": "",
+    "avg_hesitation": 0,
+    "avg_typing_speed": 100,
+    "avg_input_length": 0,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 0,
+    "total_speed": 0,
+    "total_length": 0,
+    "first_seen": "2026-04-11T03:59:47.506504",
+    "last_seen": "2026-04-11T03:59:47.506515",
+    "sessions": 0,
+    "ending_reached": null,
+    "achievements": [],
+    "phase_history": [
+      1
+    ]
+  },
+  "test-001": {
+    "interaction_count": 0,
+    "phase": 1,
+    "hidden_state": "observer",
+    "intents": [],
+    "unique_intents": 0,
+    "repeated_questions": 0,
+    "last_question": "",
+    "avg_hesitation": 0,
+    "avg_typing_speed": 100,
+    "avg_input_length": 0,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 0,
+    "total_speed": 0,
+    "total_length": 0,
+    "first_seen": "2026-04-11T04:00:21.914108",
+    "last_seen": "2026-04-11T04:00:21.914115",
+    "sessions": 0,
+    "ending_reached": null,
+    "achievements": [],
+    "phase_history": [
+      1
+    ]
+  },
+  "59d65fcccc7f7ad8": {
+    "interaction_count": 2,
+    "phase": 1,
+    "hidden_state": "observer",
+    "intents": [
+      "محبة"
+    ],
+    "unique_intents": 1,
+    "repeated_questions": 1,
+    "last_question": "اختبارمحبة",
+    "avg_hesitation": 0.0,
+    "avg_typing_speed": 100.0,
+    "avg_input_length": 3.0,
+    "fear_score": 0,
+    "ambition_score": 0,
+    "confusion_score": 0,
+    "total_hesitation": 0,
+    "total_speed": 200,
+    "total_length": 6,
+    "first_seen": "2026-04-11T04:28:34.297050",
+    "last_seen": "2026-04-11T13:41:08.133160",
+    "sessions": 1,
+    "ending_reached": "default",
+    "achievements": [
+      "silent_one",
+      "first_blood"
+    ],
+    "phase_history": [
+      1
+    ]
+  }
+}

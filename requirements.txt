@@ -1,0 +1,38 @@
+# ══════════════════════════════════════════════════════════════════
+# SHAMS AL-MAARIF v19 PRODUCTION — requirements.txt
+# Complete merged requirements from v17 + v18
+# ══════════════════════════════════════════════════════════════════
+
+# ── Core Framework ──────────────────────────────────────────────
+flask>=3.0.0
+python-dotenv>=1.0.0
+
+# ── Image & Media ────────────────────────────────────────────────
+pillow>=10.0.0
+
+# ── System Monitoring ────────────────────────────────────────────
+psutil>=5.9.0
+
+# ── HTTP Requests ────────────────────────────────────────────────
+requests>=2.31.0
+
+# ── AI Integration (optional) ────────────────────────────────────
+google-genai>=1.0.0
+
+# ── Astronomy — NASA ephemeris data ──────────────────────────────
+skyfield>=1.54
+numpy>=2.0.0
+
+# ── Performance: Caching (optional — works without it) ──────────
+flask-caching>=2.1.0
+
+# ── Security: Rate Limiting (optional — works without it) ────────
+flask-limiter>=3.5.0
+
+# ── FastAPI (for api/main.py secondary API) ──────────────────────
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic>=2.5.0
+
+# ── Production Server (Linux/macOS only — not on Windows) ────────
+# gunicorn>=21.0.0

@@ -1,0 +1,23 @@
+{
+  "total_sessions": 54,
+  "intent_freq": {
+    "محبة": 5,
+    "maymun": 1,
+    "الخاتم السليماني": 1,
+    "burqan": 2,
+    "القبول والجاه": 1,
+    "المحبة والتهييج": 1,
+    "فحص النظام": 40
+  },
+  "archetype_counts": {
+    "observer": 13,
+    "silent": 4,
+    "looped_mind": 37
+  },
+  "pattern_clusters": {},
+  "avg_hesitation_global": 0.09259259259259259,
+  "response_tuning": {
+    "محبة": "optimized",
+    "فحص النظام": "optimized"
+  }
+}

@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>موسوعة شمس المعارف — المصدر الكامل</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cairo:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   SHAMS AL-MAARIF — BOOK ENCYCLOPEDIA · موسوعة المخطوطة
+═══════════════════════════════════════════════════════════════ */
+:root {
+  --obsidian:    #06040f;
+  --obsidian2:   #0c0818;
+  --obsidian3:   #110d20;
+  --crystal:     #e8d5ff;
+  --aurora:      #c084fc;
+  --aurora2:     #818cf8;
+  --gold:        #f5c842;
+  --gold2:       #e8a020;
+  --jade:        #10b981;
+  --crimson:     #ef4444;
+  --ice:         #bae6fd;
+  --glass-1:     rgba(12, 8, 24, 0.97);
+  --glass-2:     rgba(18, 12, 36, 0.90);
+  --glass-3:     rgba(30, 20, 60, 0.75);
+  --border-1:    rgba(192, 132, 252, 0.12);
+  --border-2:    rgba(192, 132, 252, 0.30);
+  --border-gold: rgba(245, 200, 66, 0.28);
+  --text-1:      #f0eaff;
+  --text-2:      #a78bca;
+  --text-3:      #5b4a7a;
+  --fire:        #ff6b35;
+  --water:       #3bc9db;
+  --earth:       #a67c52;
+  --air:         #74c0fc;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--obsidian);
+  color: var(--text-1);
+  font-family: 'Cairo', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background: radial-gradient(ellipse at 20% 20%, rgba(192,132,252,0.04) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(245,200,66,0.03) 0%, transparent 60%);
+}
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background: var(--obsidian2); }
+::-webkit-scrollbar-thumb { background: var(--aurora); border-radius:2px; }
+
+/* ── TOP BAR ── */
+.topbar {
+  position: fixed; top:0; left:0; right:0; z-index:1000;
+  background: var(--glass-1);
+  border-bottom: 1px solid var(--border-gold);
+  height: 52px;
+  display: flex; align-items:center; justify-content:space-between;
+  padding: 0 20px;
+  backdrop-filter: blur(20px);
+}
+.topbar-logo {
+  font-family:'Cinzel',serif; font-size:13px; color:var(--gold);
+  letter-spacing:2px; text-transform:uppercase;
+}
+.topbar-title {
+  font-family:'Amiri',serif; font-size:16px; color:var(--crystal);
+  font-weight:700;
+}
+.topbar-nav { display:flex; gap:8px; }
+.topbar-btn {
+  background: rgba(192,132,252,0.08); border:1px solid var(--border-1);
+  color: var(--text-2); padding:5px 12px; border-radius:4px;
+  font-family:'Cairo',sans-serif; font-size:11px; cursor:pointer;
+  text-decoration:none; transition: all 0.2s;
+}
+.topbar-btn:hover { background: rgba(192,132,252,0.18); color:var(--crystal); }
+.topbar-btn.active { background: rgba(245,200,66,0.12); border-color:var(--border-gold); color:var(--gold); }
+
+/* ── LAYOUT ── */
+.layout {
+  display: flex; min-height:100vh; padding-top:52px;
+}
+.sidebar {
+  width: 260px; min-height:calc(100vh - 52px);
+  background: var(--glass-1);
+  border-left: 1px solid var(--border-1);
+  position: sticky; top:52px; height:calc(100vh - 52px);
+  overflow-y:auto; flex-shrink:0;
+}
+.main-content {
+  flex: 1; padding: 30px 24px; max-width:900px;
+  margin: 0 auto;
+}
+
+/* ── SIDEBAR ── */
+.sidebar-section { padding: 12px 0; }
+.sidebar-header {
+  padding: 8px 16px 4px;
+  font-size:10px; font-weight:700; letter-spacing:2px;
+  color: var(--text-3); text-transform:uppercase;
+}
+.sidebar-item {
+  display:flex; align-items:center; gap:8px;
+  padding: 8px 16px; cursor:pointer;
+  color: var(--text-2); font-size:13px;
+  transition: all 0.2s; border-right:2px solid transparent;
+}
+.sidebar-item:hover { background:rgba(192,132,252,0.07); color:var(--crystal); }
+.sidebar-item.active {
+  background:rgba(192,132,252,0.12); color:var(--aurora);
+  border-right-color:var(--aurora);
+}
+.sidebar-item .dot {
+  width:6px; height:6px; border-radius:50%; flex-shrink:0;
+}
+.dot-fire  { background:var(--fire); }
+.dot-water { background:var(--water); }
+.dot-air   { background:var(--air); }
+.dot-earth { background:var(--earth); }
+.dot-gold  { background:var(--gold); }
+.dot-aurora{ background:var(--aurora); }
+.dot-jade  { background:var(--jade); }
+.dot-crimson { background:var(--crimson); }
+
+/* ── SECTION PANELS ── */
+.section-panel { display:none; }
+.section-panel.active { display:block; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  margin-bottom: 28px;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--border-gold);
+}
+.page-header-eyebrow {
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); font-family:'Cinzel',serif; margin-bottom:8px;
+}
+.page-header h1 {
+  font-family:'Amiri',serif; font-size:32px; color:var(--crystal);
+  line-height:1.4; margin-bottom:8px;
+}
+.page-header p { color:var(--text-2); font-size:14px; line-height:1.8; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--glass-2);
+  border: 1px solid var(--border-1);
+  border-radius:8px; padding:20px; margin-bottom:16px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color:var(--border-2); }
+.card-title {
+  font-family:'Amiri',serif; font-size:18px; color:var(--gold);
+  margin-bottom:12px; display:flex; align-items:center; gap:8px;
+}
+.card-subtitle { color:var(--aurora); font-size:12px; font-weight:600; margin-bottom:8px; }
+.card p { color:var(--text-2); font-size:13.5px; line-height:1.9; }
+
+/* ── GRID ── */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+@media(max-width:700px) { .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; } }
+
+/* ── ELEMENT BADGES ── */
+.el-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600;
+}
+.el-fire  { background:rgba(255,107,53,0.15); color:var(--fire); border:1px solid rgba(255,107,53,0.3); }
+.el-water { background:rgba(59,201,219,0.15); color:var(--water); border:1px solid rgba(59,201,219,0.3); }
+.el-earth { background:rgba(166,124,82,0.15); color:var(--earth); border:1px solid rgba(166,124,82,0.3); }
+.el-air   { background:rgba(116,192,252,0.15); color:var(--air); border:1px solid rgba(116,192,252,0.3); }
+.el-mixed { background:rgba(192,132,252,0.15); color:var(--aurora); border:1px solid rgba(192,132,252,0.3); }
+
+/* ── TABLE ── */
+.shams-table {
+  width:100%; border-collapse:collapse; font-size:12.5px;
+}
+.shams-table th {
+  background:rgba(192,132,252,0.1); color:var(--aurora);
+  padding:9px 12px; text-align:right; font-weight:600;
+  border-bottom:1px solid var(--border-2); font-size:11px;
+  letter-spacing:0.5px;
+}
+.shams-table td {
+  padding:8px 12px; border-bottom:1px solid var(--border-1);
+  color:var(--text-1); vertical-align:top;
+}
+.shams-table tr:hover td { background:rgba(192,132,252,0.04); }
+.shams-table .td-gold { color:var(--gold); font-weight:700; font-size:15px; }
+.shams-table .td-dim { color:var(--text-3); font-size:11px; }
+
+/* ── LETTER BLOCK ── */
+.letter-block {
+  background: var(--glass-3); border:1px solid var(--border-1);
+  border-radius:8px; padding:16px; text-align:center;
+  transition:all 0.2s; cursor:default;
+}
+.letter-block:hover { border-color:var(--border-2); transform:translateY(-2px); }
+.letter-char {
+  font-family:'Amiri',serif; font-size:36px; color:var(--gold);
+  display:block; margin-bottom:4px; line-height:1;
+}
+.letter-abjad { font-size:11px; color:var(--aurora); font-weight:700; }
+.letter-el    { font-size:10px; color:var(--text-3); margin-top:2px; }
+
+/* ── PLANET CARD ── */
+.planet-card {
+  background: var(--glass-2); border:1px solid var(--border-1);
+  border-radius:8px; padding:18px; position:relative; overflow:hidden;
+  transition: all 0.2s;
+}
+.planet-card:hover { border-color:var(--border-2); transform:translateY(-1px); }
+.planet-card::before {
+  content:''; position:absolute; top:0; right:0;
+  width:60px; height:60px; border-radius:0 8px 0 60px;
+  opacity:0.1;
+}
+.planet-card.sun::before   { background:var(--gold); }
+.planet-card.moon::before  { background:var(--ice); }
+.planet-card.mars::before  { background:var(--crimson); }
+.planet-card.merc::before  { background:var(--text-2); }
+.planet-card.jup::before   { background:var(--aurora2); }
+.planet-card.ven::before   { background:var(--jade); }
+.planet-card.sat::before   { background:var(--text-3); }
+.planet-name { font-family:'Amiri',serif; font-size:20px; color:var(--gold); }
+.planet-day  { font-size:11px; color:var(--aurora); margin:4px 0; }
+.planet-uses { font-size:12px; color:var(--text-2); line-height:1.7; }
+.planet-meta { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+.meta-tag {
+  background:rgba(192,132,252,0.08); border:1px solid var(--border-1);
+  padding:2px 8px; border-radius:3px; font-size:10px; color:var(--text-2);
+}
+
+/* ── MANSION CARD ── */
+.mansion-card {
+  background: var(--glass-2); border:1px solid var(--border-1);
+  border-radius:8px; padding:15px; cursor:pointer; transition:all 0.2s;
+}
+.mansion-card:hover { border-color:var(--border-2); }
+.mansion-card.saad  { border-right:3px solid var(--jade); }
+.mansion-card.nahs  { border-right:3px solid var(--crimson); }
+.mansion-card.mixed { border-right:3px solid var(--gold); }
+.mansion-num  { font-size:10px; color:var(--text-3); }
+.mansion-name { font-family:'Amiri',serif; font-size:17px; color:var(--crystal); margin:2px 0; }
+.mansion-letter { font-size:22px; color:var(--gold); font-family:'Amiri',serif; float:left; }
+.mansion-uses { font-size:11px; color:var(--text-2); line-height:1.6; margin-top:4px; }
+.mansion-incense { font-size:10px; color:var(--aurora2); margin-top:6px; }
+.clearfix::after { content:''; display:table; clear:both; }
+
+/* ── DETAIL MODAL ── */
+.modal-overlay {
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(6,4,15,0.85); backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal-box {
+  background: var(--obsidian2); border:1px solid var(--border-2);
+  border-radius:12px; width:90%; max-width:620px; max-height:80vh;
+  overflow-y:auto; padding:28px;
+  transform:translateY(20px); transition:transform 0.3s;
+}
+.modal-overlay.open .modal-box { transform:translateY(0); }
+.modal-close {
+  float:left; background:none; border:1px solid var(--border-1);
+  color:var(--text-2); width:28px; height:28px; border-radius:4px;
+  cursor:pointer; font-size:14px; transition:all 0.2s;
+}
+.modal-close:hover { border-color:var(--crimson); color:var(--crimson); }
+.modal-title { font-family:'Amiri',serif; font-size:24px; color:var(--gold); margin-bottom:16px; }
+.modal-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border-1); font-size:13px; }
+.modal-row .lbl { color:var(--text-3); }
+.modal-row .val { color:var(--text-1); text-align:left; max-width:65%; }
+
+/* ── LAW BLOCK ── */
+.law-block {
+  background: var(--glass-3); border:1px solid var(--border-gold);
+  border-radius:8px; padding:18px; margin-bottom:12px;
+}
+.law-name  { color:var(--gold); font-weight:700; font-size:14px; margin-bottom:6px; }
+.law-form  { color:var(--aurora); font-size:13px; margin-bottom:6px; font-family:'Amiri',serif; }
+.law-analogy { color:var(--text-3); font-size:12px; font-style:italic; }
+
+/* ── CHAPTER LIST ── */
+.chapter-item {
+  display:flex; align-items:center; gap:12px;
+  padding:8px 14px; border-radius:6px; cursor:pointer;
+  transition:background 0.2s; border:1px solid transparent;
+}
+.chapter-item:hover { background:rgba(192,132,252,0.07); border-color:var(--border-1); }
+.chapter-num { color:var(--gold); font-weight:700; font-size:12px; min-width:28px; }
+.chapter-name { color:var(--text-1); font-size:13px; }
+
+/* ── COSMIC CHAIN ── */
+.cosmic-chain { display:flex; flex-direction:column; gap:0; align-items:center; }
+.cosmic-node {
+  background:var(--glass-2); border:1px solid var(--border-1);
+  border-radius:6px; padding:8px 18px; text-align:center;
+  min-width:200px; position:relative;
+}
+.cosmic-node.divine { border-color:var(--border-gold); background:rgba(245,200,66,0.06); }
+.cosmic-node.planet { border-color:var(--border-1); }
+.cosmic-node.element { border-color:rgba(59,201,219,0.3); background:rgba(59,201,219,0.04); }
+.cosmic-node-name { color:var(--crystal); font-size:13px; font-family:'Amiri',serif; }
+.cosmic-node-letter { color:var(--gold); font-size:10px; }
+.cosmic-arrow { color:var(--text-3); font-size:16px; padding:2px 0; }
+
+/* ── GLOSSARY ── */
+.glossary-item { padding:12px 0; border-bottom:1px solid var(--border-1); }
+.glossary-term { color:var(--gold); font-weight:700; font-size:14px; margin-bottom:4px; }
+.glossary-def  { color:var(--text-2); font-size:13px; line-height:1.8; }
+
+/* ── SEARCH ── */
+.search-bar {
+  width:100%; background:rgba(192,132,252,0.06);
+  border:1px solid var(--border-1); border-radius:6px;
+  padding:10px 14px; color:var(--text-1); font-family:'Cairo',sans-serif;
+  font-size:13px; outline:none; margin-bottom:20px;
+  transition:border-color 0.2s;
+}
+.search-bar:focus { border-color:var(--aurora); }
+.search-bar::placeholder { color:var(--text-3); }
+
+/* ── ASMA VAULT ── */
+.asma-vault-card {
+  background: var(--glass-2); border:1px solid var(--border-1);
+  border-radius:8px; padding:14px; cursor:pointer;
+  transition:all 0.2s; position:relative; overflow:hidden;
+}
+.asma-vault-card:hover { border-color:var(--border-2); transform:translateY(-2px); }
+.asma-vault-card.has-warning { border-right:3px solid var(--crimson); }
+.asma-name-ar {
+  font-family:'Amiri',serif; font-size:20px; color:var(--gold);
+  display:block; margin-bottom:4px;
+}
+.asma-abjad { font-size:11px; color:var(--aurora); font-weight:700; }
+.asma-note  { font-size:11px; color:var(--text-3); margin-top:4px; line-height:1.5; }
+.asma-planet-dot {
+  position:absolute; top:10px; left:10px;
+  width:8px; height:8px; border-radius:50%;
+}
+.asma-filter-btn {
+  background:rgba(192,132,252,0.08); border:1px solid var(--border-1);
+  color:var(--text-2); padding:5px 12px; border-radius:4px;
+  font-family:'Cairo',sans-serif; font-size:11px; cursor:pointer;
+  transition:all 0.2s;
+}
+.asma-filter-btn:hover { background:rgba(192,132,252,0.18); color:var(--crystal); }
+.asma-filter-btn.active { background:rgba(245,200,66,0.12); border-color:var(--border-gold); color:var(--gold); }
+
+/* ── SUGGEST ── */
+.intent-btn {
+  background:rgba(192,132,252,0.07); border:1px solid var(--border-1);
+  color:var(--text-2); padding:8px 16px; border-radius:6px;
+  font-family:'Cairo',sans-serif; font-size:12px; cursor:pointer;
+  transition:all 0.2s;
+}
+.intent-btn:hover { background:rgba(192,132,252,0.18); color:var(--crystal); border-color:var(--aurora); }
+.intent-btn.active { background:rgba(245,200,66,0.12); border-color:var(--border-gold); color:var(--gold); }
+.suggest-card {
+  background:var(--glass-2); border:1px solid var(--border-gold);
+  border-radius:10px; padding:18px; margin-bottom:12px;
+  display:grid; grid-template-columns:80px 1fr; gap:16px;
+}
+.suggest-abjad {
+  background:rgba(245,200,66,0.08); border:1px solid var(--border-gold);
+  border-radius:8px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+}
+.suggest-abjad-num { color:var(--gold); font-size:22px; font-weight:700; }
+.suggest-abjad-lbl { color:var(--text-3); font-size:9px; }
+.suggest-name { font-family:'Amiri',serif; font-size:24px; color:var(--gold); }
+.suggest-note { color:var(--text-2); font-size:13px; margin:6px 0; line-height:1.7; }
+.suggest-psych { color:var(--aurora2); font-size:12px; font-style:italic; }
+.suggest-meta { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+
+.divider {
+  border:none; border-top:1px solid var(--border-1);
+  margin:20px 0;
+}
+.section-title {
+  font-family:'Amiri',serif; font-size:22px; color:var(--crystal);
+  margin-bottom:16px; padding-bottom:8px;
+  border-bottom:1px solid var(--border-gold);
+  display:flex; align-items:center; gap:10px;
+}
+.section-title::before {
+  content:''; width:3px; height:22px;
+  background:linear-gradient(to bottom, var(--gold), transparent);
+  border-radius:2px;
+}
+
+/* ── BADGE ── */
+.badge {
+  display:inline-block; padding:2px 8px; border-radius:3px;
+  font-size:10px; font-weight:700; letter-spacing:0.5px;
+}
+.badge-saad    { background:rgba(16,185,129,0.15); color:var(--jade); }
+.badge-nahs    { background:rgba(239,68,68,0.15); color:var(--crimson); }
+.badge-mixed   { background:rgba(245,200,66,0.12); color:var(--gold); }
+.badge-abjad   { background:rgba(192,132,252,0.12); color:var(--aurora); }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">☀ SHAMS</div>
+  <div class="topbar-title">موسوعة شمس المعارف الكبرى</div>
+  <nav class="topbar-nav">
+    <a href="/" class="topbar-btn">الرئيسية</a>
+    <a href="/main" class="topbar-btn">الواجهة الرئيسية</a>
+    <a href="/book" class="topbar-btn active">الموسوعة</a>
+    <a href="/diagnostics" class="topbar-btn">التشخيص</a>
+  </nav>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-header">الأقسام الرئيسية</div>
+      <div class="sidebar-item active" onclick="showSection('intro')">
+        <span class="dot dot-gold"></span> معلومات الكتاب
+      </div>
+      <div class="sidebar-item" onclick="showSection('chapters')">
+        <span class="dot dot-aurora"></span> الفصول الأربعون
+      </div>
+      <div class="sidebar-item" onclick="showSection('pages')">
+        <span class="dot dot-aurora"></span> التحليل صفحة بصفحة
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header">علم الحروف</div>
+      <div class="sidebar-item" onclick="showSection('letters')">
+        <span class="dot dot-gold"></span> الحروف وطبائعها
+      </div>
+      <div class="sidebar-item" onclick="showSection('elements')">
+        <span class="dot dot-fire"></span> الجدول الدوري الروحاني
+      </div>
+      <div class="sidebar-item" onclick="showSection('angels')">
+        <span class="dot dot-aurora"></span> ملائكة الحروف
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header">علم الكواكب</div>
+      <div class="sidebar-item" onclick="showSection('planets')">
+        <span class="dot dot-gold"></span> الكواكب السبعة
+      </div>
+      <div class="sidebar-item" onclick="showSection('cosmic')">
+        <span class="dot dot-aurora"></span> التسلسل الهرمي الكوني
+      </div>
+      <div class="sidebar-item" onclick="showSection('planetary-hours')">
+        <span class="dot dot-jade"></span> الساعات الفلكية
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header">المنازل القمرية</div>
+      <div class="sidebar-item" onclick="showSection('mansions')">
+        <span class="dot dot-water"></span> المنازل ٢٨
+      </div>
+      <div class="sidebar-item" onclick="showSection('zodiac')">
+        <span class="dot dot-aurora"></span> البروج والمنازل
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header">القوانين والخوارزميات</div>
+      <div class="sidebar-item" onclick="showSection('laws')">
+        <span class="dot dot-gold"></span> قوانين العمل الروحاني
+      </div>
+      <div class="sidebar-item" onclick="showSection('algorithm')">
+        <span class="dot dot-crimson"></span> خوارزمية الكسر والبسط
+      </div>
+      <div class="sidebar-item" onclick="showSection('heart')">
+        <span class="dot dot-aurora"></span> تشريح القلب الصوفي
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-header">المراجع</div>
+      <div class="sidebar-item" onclick="showSection('asma')">
+        <span class="dot dot-gold"></span> خزانة الأسماء الحسنى
+      </div>
+      <div class="sidebar-item" onclick="showSection('asma-suggest')">
+        <span class="dot dot-jade"></span> الموصي الذكي
+      </div>
+      <div class="sidebar-item" onclick="showSection('glossary')">
+        <span class="dot dot-aurora"></span> معجم المصطلحات
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <input class="search-bar" id="searchBar" placeholder="ابحث في الموسوعة..." oninput="searchContent(this.value)">
+
+    <!-- ═══ INTRO ═══ -->
+    <div class="section-panel active" id="sec-intro">
+      <div class="page-header">
+        <div class="page-header-eyebrow">☀ SHAMS AL-MAARIF AL-KUBRA</div>
+        <h1>شمس المعارف ولطائف العوارف</h1>
+        <p>للإمام أحمد بن علي البوني — المتوفى ٦٢٢ هـ<br>
+        الموسوعة الشاملة المستخرجة من التحليل المعمق للمخطوطة</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📖 عن الكتاب</div>
+          <table class="shams-table">
+            <tr><td class="td-gold">العنوان</td><td>شمس المعارف ولطائف العوارف</td></tr>
+            <tr><td class="td-gold">المؤلف</td><td>أحمد بن علي البوني</td></tr>
+            <tr><td class="td-gold">تاريخ الوفاة</td><td>٦٢٢ هـ</td></tr>
+            <tr><td class="td-gold">عدد الفصول</td><td>٤٠ فصلاً</td></tr>
+            <tr><td class="td-gold">الهدف الأساسي</td><td>الكشف عن أسرار أسماء الله الحسنى</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">⚡ الهدف المزدوج</div>
+          <p style="margin-bottom:12px;">يجمع الكتاب بين مسارين متكاملين:</p>
+          <div style="display:flex;gap:10px;flex-direction:column;">
+            <div style="background:rgba(245,200,66,0.06);border:1px solid var(--border-gold);border-radius:6px;padding:12px;">
+              <div style="color:var(--gold);font-weight:700;margin-bottom:4px;">المسار الروحي ↑</div>
+              <div style="color:var(--text-2);font-size:12px;">معرفة الله، الوصول للحضرة الربانية، الكمال الباطني</div>
+            </div>
+            <div style="background:rgba(192,132,252,0.06);border:1px solid var(--border-1);border-radius:6px;padding:12px;">
+              <div style="color:var(--aurora);font-weight:700;margin-bottom:4px;">المسار المادي ↓</div>
+              <div style="color:var(--text-2);font-size:12px;">تسخير الدنيا، قضاء الحوائج، تحقيق الرغبات</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:4px;">
+        <div class="card-title">🔒 شروط العمل بالكتاب</div>
+        <div class="grid-2" style="margin-top:8px;">
+          <div>
+            <div class="card-subtitle">شروط لازمة</div>
+            <ul style="list-style:none;padding:0;">
+              <li style="padding:5px 0;border-bottom:1px solid var(--border-1);color:var(--text-2);font-size:13px;">🌊 الطهارة الجسدية (الوضوء)</li>
+              <li style="padding:5px 0;border-bottom:1px solid var(--border-1);color:var(--text-2);font-size:13px;">🙏 النية الصالحة الخالصة</li>
+              <li style="padding:5px 0;border-bottom:1px solid var(--border-1);color:var(--text-2);font-size:13px;">💎 اليقين الجازم بالإجابة</li>
+              <li style="padding:5px 0;color:var(--text-2);font-size:13px;">⏳ الصبر وعدم الاستعجال</li>
+            </ul>
+          </div>
+          <div>
+            <div class="card-subtitle">محظورات صارمة</div>
+            <ul style="list-style:none;padding:0;">
+              <li style="padding:5px 0;border-bottom:1px solid var(--border-1);color:var(--crimson);font-size:13px;">✗ إفشاء الأسرار لغير المستحقين</li>
+              <li style="padding:5px 0;border-bottom:1px solid var(--border-1);color:var(--crimson);font-size:13px;">✗ استخدام العلم لما لا يرضي الله</li>
+              <li style="padding:5px 0;border-bottom:1px solid var(--border-1);color:var(--crimson);font-size:13px;">✗ الشك في نجاح العمل</li>
+              <li style="padding:5px 0;color:var(--crimson);font-size:13px;">✗ الاستعجال ومراقبة النتيجة</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CHAPTERS ═══ -->
+    <div class="section-panel" id="sec-chapters">
+      <div class="section-title">الفصول الأربعون</div>
+      <div id="chapters-list"></div>
+    </div>
+
+    <!-- ═══ PAGES ANALYSIS ═══ -->
+    <div class="section-panel" id="sec-pages">
+      <div class="section-title">التحليل المعمق — صفحة بصفحة</div>
+      <div id="pages-list"></div>
+    </div>
+
+    <!-- ═══ LETTERS ═══ -->
+    <div class="section-panel" id="sec-letters">
+      <div class="section-title">الحروف العربية وأسرارها</div>
+      <div class="card" style="margin-bottom:20px;">
+        <p>الحروف العربية الـ ٢٨ تتطابق هندسياً مع منازل القمر الـ ٢٨. كل حرف يرتبط بكوكب وطبيعة وملاك وعدد أبجدي. العلاقة بين الحروف والكون هندسة إلهية دقيقة.</p>
+      </div>
+      <div id="letters-grid" class="grid-4"></div>
+    </div>
+
+    <!-- ═══ ELEMENTS ═══ -->
+    <div class="section-panel" id="sec-elements">
+      <div class="section-title">الجدول الدوري الروحاني — طبائع الحروف</div>
+      <div class="grid-2" id="elements-grid"></div>
+    </div>
+
+    <!-- ═══ ANGELS ═══ -->
+    <div class="section-panel" id="sec-angels">
+      <div class="section-title">ملائكة الحروف وإضماراتهم</div>
+      <div class="card" style="margin-bottom:16px;">
+        <p>لكل حرف ملاك موكّل به، وهذا الملاك له <strong style="color:var(--gold)">إضمار</strong> — كود سري مقدس. من يعرف الإضمار الصحيح لا يمكن للملاك التخلف عن طاعته "طرفة عين".</p>
+      </div>
+      <table class="shams-table" id="angels-table">
+        <thead>
+          <tr>
+            <th>الحرف</th><th>العدد الأبجدي</th><th>الطبيعة</th>
+            <th>الملاك</th><th>الإضمار</th><th>المنزلة</th>
+          </tr>
+        </thead>
+        <tbody id="angels-body"></tbody>
+      </table>
+    </div>
+
+    <!-- ═══ PLANETS ═══ -->
+    <div class="section-panel" id="sec-planets">
+      <div class="section-title">الكواكب السبعة — الخصائص الكاملة</div>
+      <div id="planets-grid" class="grid-2"></div>
+    </div>
+
+    <!-- ═══ COSMIC ═══ -->
+    <div class="section-panel" id="sec-cosmic">
+      <div class="section-title">التسلسل الهرمي الكوني</div>
+      <div class="card" style="margin-bottom:20px;">
+        <p>يرى المؤلف الكون كشلال من الطاقة يبدأ من <strong style="color:var(--gold)">العرش الإلهي</strong> وينزل بالتدريج عبر الكواكب السبعة حتى يصل إلى العناصر الأربعة في عالمنا. للتحكم في نتيجة مادية، يجب إرسال طلبك ليصعد هذه السلسلة ويعود بالاستجابة.</p>
+      </div>
+      <div class="cosmic-chain" id="cosmic-chain"></div>
+    </div>
+
+    <!-- ═══ PLANETARY HOURS ═══ -->
+    <div class="section-panel" id="sec-planetary-hours">
+      <div class="section-title">الساعات الفلكية — جدول التشغيل الزمني</div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-subtitle">⚠️ تعريف الساعة الفلكية</div>
+        <p>الساعة الفلكية ≠ ٦٠ دقيقة. هي ناتج قسمة طول النهار (الشروق → الغروب) على ١٢، وطول الليل على ١٢. تتغير مدتها صيفاً وشتاءً.</p>
+      </div>
+      <div id="planetary-hours-table"></div>
+    </div>
+
+    <!-- ═══ MANSIONS ═══ -->
+    <div class="section-panel" id="sec-mansions">
+      <div class="section-title">المنازل القمرية الثمانية والعشرون</div>
+      <div class="card" style="margin-bottom:16px;">
+        <p>القمر يمر بـ ٢٨ منزلة كل شهر. كل منزلة تفرز طاقة كونية مختلفة تؤثر على المواليد والأعمال الروحانية. المعادلة: <strong style="color:var(--gold)">المنزلة + الحرف + البخور = عمل كامل</strong></p>
+      </div>
+      <div id="mansions-grid" class="grid-2"></div>
+    </div>
+
+    <!-- ═══ ZODIAC ═══ -->
+    <div class="section-panel" id="sec-zodiac">
+      <div class="section-title">البروج الاثنا عشر وارتباطها بالمنازل</div>
+      <div class="card" style="margin-bottom:16px;">
+        <p>٢٨ منزلة ÷ ١٢ برج = كل برج يأخذ منزلتين كاملتين وثلث منزلة إضافية. هذا التداخل يعني أن طاقة كل برج هي مزيج دقيق من طاقات منازله.</p>
+      </div>
+      <table class="shams-table">
+        <thead><tr><th>البرج</th><th>العنصر</th><th>الكوكب الحاكم</th><th>المنازل المرتبطة</th></tr></thead>
+        <tbody id="zodiac-body"></tbody>
+      </table>
+    </div>
+
+    <!-- ═══ LAWS ═══ -->
+    <div class="section-panel" id="sec-laws">
+      <div class="section-title">قوانين العمل الروحاني</div>
+      <div id="laws-list"></div>
+    </div>
+
+    <!-- ═══ ALGORITHM ═══ -->
+    <div class="section-panel" id="sec-algorithm">
+      <div class="section-title">خوارزمية الكسر والبسط</div>
+      <div class="card" style="margin-bottom:16px;border-color:var(--border-gold);">
+        <div class="card-title">الخوارزمية الأساسية في علم الحروف</div>
+        <p>تفكيك الأسماء والكلمات واستخراج طاقتها الكونية عبر خطوات رياضية دقيقة</p>
+      </div>
+      <div id="algorithm-steps"></div>
+      <div class="card" style="margin-top:16px;background:rgba(239,68,68,0.04);border-color:rgba(239,68,68,0.2);">
+        <div class="card-title" style="color:var(--crimson);">🔴 مثال تطبيقي — قهر الظالم</div>
+        <table class="shams-table">
+          <tr><td class="td-gold">الهدف</td><td>عمرو (ظالم)</td></tr>
+          <tr><td class="td-gold">الكوكب</td><td>المريخ</td></tr>
+          <tr><td class="td-gold">المنزلة</td><td>الشرطين / النطح</td></tr>
+          <tr><td class="td-gold">البسط</td><td style="font-family:'Amiri',serif;font-size:16px;">ع م ر و — م ر ي خ — ن ط ح — ق م ر</td></tr>
+          <tr><td class="td-gold">الطبيعة الغالبة</td><td><span class="el-badge el-fire">نارية حارة يابسة</span></td></tr>
+          <tr><td class="td-gold">اسم الله المستخرج</td><td style="color:var(--gold);font-family:'Amiri',serif;font-size:16px;">القهار — المذل</td></tr>
+          <tr><td class="td-gold">عدد التكرار</td><td>١١١ مرة (قيمة الألف)</td></tr>
+          <tr><td class="td-gold">الملاك المستدعى</td><td>سمسمائيل</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ HEART ═══ -->
+    <div class="section-panel" id="sec-heart">
+      <div class="section-title">التشريح الصوفي للقلب البشري</div>
+      <div class="card" style="margin-bottom:16px;">
+        <p>القلب ليس عضواً واحداً في هذا العلم — بل هو <strong style="color:var(--gold)">ثلاث طبقات من الوعي</strong>، كل طبقة تدرك عالماً مختلفاً وتستقبل نوراً مختلفاً من الله.</p>
+      </div>
+      <div id="heart-layers"></div>
+    </div>
+
+    <!-- ═══ ASMA VAULT ═══ -->
+    <div class="section-panel" id="sec-asma">
+      <div class="section-title">خزانة الأسماء الحسنى — ٩٩ اسم كامل</div>
+      <div class="card" style="margin-bottom:16px;">
+        <p>كل اسم من الأسماء الحسنى له رقم أبجدي، وكوكب حاكم، وبخور، ومادة، ووفق هندسي خاص، وغرض محدد من شمس المعارف. اضغط على أي اسم لعرض تفاصيله الكاملة.</p>
+      </div>
+
+      <!-- فلاتر -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="asma-filters">
+        <button class="asma-filter-btn active" onclick="filterAsma('all',this)">الكل</button>
+        <button class="asma-filter-btn" onclick="filterAsma('الشمس',this)">☀ الشمس</button>
+        <button class="asma-filter-btn" onclick="filterAsma('القمر',this)">🌙 القمر</button>
+        <button class="asma-filter-btn" onclick="filterAsma('المريخ',this)">♂ المريخ</button>
+        <button class="asma-filter-btn" onclick="filterAsma('عطارد',this)">☿ عطارد</button>
+        <button class="asma-filter-btn" onclick="filterAsma('المشتري',this)">♃ المشتري</button>
+        <button class="asma-filter-btn" onclick="filterAsma('الزهرة',this)">♀ الزهرة</button>
+        <button class="asma-filter-btn" onclick="filterAsma('زحل',this)">♄ زحل</button>
+        <button class="asma-filter-btn" style="background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.3);color:#ef4444;" onclick="filterAsma('warning',this)">⚠ تحذير</button>
+      </div>
+
+      <div id="asma-vault-grid" class="grid-3"></div>
+    </div>
+
+    <!-- ═══ ASMA SUGGEST ═══ -->
+    <div class="section-panel" id="sec-asma-suggest">
+      <div class="section-title">الموصي الذكي — اختر الاسم المناسب لنيتك</div>
+
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-subtitle">اختر غرضك أو نيتك</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;" id="intent-buttons">
+        </div>
+      </div>
+
+      <div id="suggest-results" style="display:none;">
+        <div class="section-title" style="font-size:16px;">الأسماء المقترحة</div>
+        <div id="suggest-cards"></div>
+      </div>
+    </div>
+
+    <!-- ═══ GLOSSARY ═══ -->
+    <div class="section-panel" id="sec-glossary">
+      <div class="section-title">معجم المصطلحات الكاملة</div>
+      <div id="glossary-list"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modal-title"></div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+//   الأسماء الحسنى — ٩٩ اسم كامل
+// ═══════════════════════════════════════════
+const ASMA_99 = {
+  'الله':     {ab:66,  wafq:'3x3',planet:null,   day:null,       mat:'ورق أبيض / حرير',      inc:'عود ومسك',  intent:['التوسل الأعظم','قضاء كل الحوائج'],  note:'اسم الذات الأعظم — محرك كل الأسماء'},
+  'الرحمن':  {ab:329, wafq:'5x5',planet:null,   day:'الجمعة',   mat:'حرير أبيض',             inc:'ورد وزعفران',intent:['انشراح الصدر','جلب الرحمة'],        note:'رحمة عامة تشمل الكل', psych:'علاج القسوة والبرود العاطفي'},
+  'الرحيم':  {ab:289, wafq:'4x4',planet:'الزهرة',day:'الجمعة', mat:'خزف أبيض يُغسل',        inc:'ورد وياسمين',intent:['الشفاء من الأسقام','الرحمة الخاصة'], note:'رحمة خاصة للمؤمنين',  psych:'علاج الجروح العاطفية القديمة'},
+  'الملك':   {ab:90,  wafq:'4x4',planet:'الشمس',day:'الأحد',   mat:'ذهب',                   inc:'لبان ذكر',  intent:['الهيبة والسلطة','الجاه'],           note:'المالك الحقيقي',       story:'خاتم الملك لذي القرنين — أفلاطون'},
+  'القدوس':  {ab:170, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'فضة',                   inc:'كافور وصندل',intent:['تطهير الروح','التخلص من الوساوس'],  note:'المنزّه عن كل نقيصة', psych:'علاج الشعور بالتلوث النفسي'},
+  'السلام':  {ab:131, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'فضة / حرير أبيض',       inc:'لبان ومصطكى',intent:['الأمان والحفظ','السلام الداخلي'],    note:'مصدر السلام الحقيقي', psych:'علاج القلق المزمن'},
+  'المؤمن':  {ab:136, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'فضة',                   inc:'عود هندي',  intent:['علاج الوسواس','تثبيت الإيمان'],      note:'المصدّق لعباده',      psych:'علاج الوسواس والتشكيك الداخلي'},
+  'المهيمن': {ab:145, wafq:'5x5',planet:'القمر',  day:'الاثنين',mat:'فضة',                   inc:'مر وصبر',   intent:['الحماية من المؤامرات','الهيمنة'],    note:'الرقيب المسيطر',     psych:'علاج الخوف من المؤامرات'},
+  'العزيز':  {ab:94,  wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'نحاس أحمر',             inc:'كبريت أصفر',intent:['العزة والمنعة','الغلبة على الأعداء'], note:'المنيع الذي لا يُقهر', warning:'للحماية لا للعدوان', story:'خاتم المأمون'},
+  'الجبار':  {ab:206, wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'حديد',                  inc:'فلفل وكبريت',intent:['قهر الظالمين','استرداد الحقوق'],      note:'القاهر لكل جبار',     warning:'لرد المظالم فقط', prophet:'موسى عليه السلام'},
+  'المتكبر': {ab:662, wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'نحاس أحمر',             inc:'حلتيت',     intent:['إخضاع المتكبر'],                     note:'الكبرياء لله وحده',   warning:'للمتكبر الظالم فقط'},
+  'الخالق':  {ab:731, wafq:'4x4',planet:'القمر',  day:'الاثنين',mat:'كاغد أبيض',             inc:'لبان وعود', intent:['الإبداع','نجاح المشاريع الجديدة'],   note:'المقدّر للأشياء',     psych:'يُحفّز التفكير الخلاق'},
+  'البارئ':  {ab:213, wafq:'4x4',planet:'القمر',  day:'الاثنين',mat:'ورق أبيض',              inc:'ميعة وكافور',intent:['الشفاء من الأمراض','تجديد الجسد'],   note:'يُكتب في مثلث داخل مربع'},
+  'المصور':  {ab:336, wafq:'4x4',planet:'الزهرة',day:'الجمعة', mat:'فضة / ورق أصفر',        inc:'زعفران وورد',intent:['تحسين الجمال','الحمل والإنجاب'],     note:'مصوّر صور المخلوقات', story:'من أراد ولداً جميلاً...'},
+  'الغفار':  {ab:1281,wafq:'4x4',planet:'زحل',   day:'السبت',  mat:'رصاص / كاغد أسمر',      inc:'أسبند',     intent:['التوبة وغفران الذنوب','فك العقوبات'],note:'الغفور مرة بعد مرة',  psych:'علاج الذنب المزمن'},
+  'القهار':  {ab:306, wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'نحاس أحمر / حديد',      inc:'كبريت وفلفل',intent:['قهر العدو الظالم','كسر التسلط'],     note:'يُكتب في منزلة الشرطين', warning:'للمظلوم فقط'},
+  'الوهاب':  {ab:14,  wafq:'3x3',planet:'المشتري',day:'الخميس',mat:'ذهب / فضة',              inc:'عنبر وعود', intent:['جلب الهبات','طلب الأرزاق الغير متوقعة'],note:'يُعطي بلا حساب',     psych:'يُزيل الشعور بأن الخير لغيري'},
+  'الرزاق':  {ab:308, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'ذهب / فضة',              inc:'عنبر وعود ومسك',intent:['فتح أبواب الرزق','البركة في التجارة'],note:'ميكائيل ملاك الأرزاق', psych:'يُزيل ذهنية الندرة'},
+  'الفتاح':  {ab:489, wafq:'5x5',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان ذكر وعود',intent:['فتح الأبواب المغلقة','حل الأمور المعقدة'],note:'فاتح كل باب مغلق'},
+  'العليم':  {ab:150, wafq:'4x4',planet:'عطارد',  day:'الأربعاء',mat:'قلم قصب / كاغد',       inc:'مصطكى',    intent:['تقوية الذاكرة','النجاح في الدراسة'],  note:'العالم بكل شيء',      psych:'يُحسّن الانتباه والتركيز'},
+  'القابض':  {ab:903, wafq:'4x4',planet:'زحل',   day:'السبت',  mat:'رصاص',                  inc:'أسبند وأسود',intent:['قبض أرزاق العدو','تجميد حركة المؤذي'],note:'عزرائيل الملاك الموكّل', warning:'للتوقف عن الأذى لا لإيقاع الضرر'},
+  'الباسط':  {ab:72,  wafq:'3x3',planet:'المشتري',day:'الجمعة', mat:'فضة',                   inc:'ورد وزعفران',intent:['بسط الرزق','التوسع في الأعمال'],     note:'يُنقش في الساعة الأولى من يوم الجمعة', psych:'علاج الخوف من الانتشار'},
+  'الخافض':  {ab:1481,wafq:'4x4',planet:'زحل',   day:'السبت',  mat:'رصاص',                  inc:'حلتيت',     intent:['خفض المتكبر','تذليل الظالم'],         note:'الخافض للمتكبرين',    warning:'للمظلوم فقط'},
+  'الرافع':  {ab:351, wafq:'4x4',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان ذكر',  intent:['رفع المكانة','الترقي','الشهرة'],     note:'الرافع لدرجات المؤمنين', psych:'يُعالج انعدام الثقة بالنفس'},
+  'المعز':   {ab:117, wafq:'3x3',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان وعود', intent:['العزة والكرامة','القبول عند الكبار'],note:'يُقيم حدوداً صحية'},
+  'المذل':   {ab:770, wafq:'4x4',planet:'زحل',   day:'السبت',  mat:'رصاص',                  inc:'أسود وزفت', intent:['إذلال الظالم المتكبر'],              note:'للكفرة والظلمة فقط',  warning:'يعود على صاحبه إذا استُخدم ابتداءً'},
+  'السميع':  {ab:180, wafq:'4x4',planet:'القمر',  day:'الاثنين',mat:'فضة',                   inc:'كافور وصندل',intent:['استجابة الدعاء','الإجابة السريعة'],  note:'السميع لكل نجوى',     psych:'يُكسر الشعور بأن لا أحد يسمعك'},
+  'البصير':  {ab:302, wafq:'4x4',planet:'الشمس',  day:'الأحد',  mat:'ذهب / زجاج',            inc:'لبان',      intent:['تقوية البصيرة','كشف الخداع'],        note:'البصير بظاهر الأشياء وباطنها'},
+  'العدل':   {ab:104, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'فضة / نحاس',              inc:'عود هندي',  intent:['استرداد الحق','نجاح في القضايا'],    note:'من دعا به على ظالم أخذ منه لوقته'},
+  'اللطيف':  {ab:129, wafq:'3x3',planet:'عطارد',  day:'الأربعاء',mat:'فضة',                  inc:'مصطكى وميعة',intent:['تفريج الكروب','خلاص المسجون'],       note:'يُذكر مفرداً — سريع الاستجابة', warning:'لا يُضاف إليه غيره في الذكر'},
+  'الخبير':  {ab:812, wafq:'4x4',planet:'عطارد',  day:'الأربعاء',mat:'كاغد يوضع تحت الرأس',  inc:'مصطكى',    intent:['الكشف عن الخفايا','الأحلام الصادقة'],note:'من ذكره ٧ أيام في خلوة...', psych:'يُفعّل اللاوعي'},
+  'الحليم':  {ab:88,  wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'فضة',                    inc:'صندل وريحان',intent:['الصبر وضبط النفس','كظم الغيظ'],      note:'الحليم الذي لا يعجل', psych:'علاج سرعة الغضب', prophet:'إبراهيم عليه السلام'},
+  'العظيم':  {ab:1020,wafq:'4x4',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان ذكر',  intent:['الهيبة والعظمة','التأثير العميق'],   note:'كالمغناطيس الأكبر — يُلبس رداء الهيبة', psych:'يُرسّخ الاحترام الذاتي العميق'},
+  'الغفور':  {ab:1286,wafq:'4x4',planet:null,    day:null,      mat:'كاغد أبيض',             inc:'لبان',      intent:['طلب المغفرة'],                       note:'كثير المغفرة'},
+  'الشكور':  {ab:526, wafq:null,  planet:null,    day:null,      mat:'ورق',                   inc:null,        intent:['الشكر'],                             note:'يشكر القليل'},
+  'العلي':   {ab:110, wafq:null,  planet:'الشمس', day:'الأحد',   mat:'ذهب',                   inc:'لبان',      intent:['الترقي','العلو'],                    note:'العالي فوق كل شيء'},
+  'الكبير':  {ab:232, wafq:null,  planet:null,    day:null,      mat:null,                    inc:null,        intent:['الهيبة'],                            note:'الكبير في صفاته'},
+  'الحفيظ':  {ab:998, wafq:null,  planet:null,    day:null,      mat:'فضة',                   inc:'عود',       intent:['الحفظ من الأعداء','الحماية'],        note:'حافظ كل شيء'},
+  'الحسيب':  {ab:80,  wafq:null,  planet:null,    day:null,      mat:null,                    inc:null,        intent:['الحساب الدقيق'],                     note:'الحاسب الدقيق'},
+  'الجليل':  {ab:73,  wafq:null,  planet:'الشمس', day:'الأحد',   mat:'ذهب',                   inc:'لبان',      intent:['الهيبة'],                            note:'ذو الجلال'},
+  'الكريم':  {ab:270, wafq:null,  planet:'المشتري',day:'الخميس', mat:'فضة',                   inc:'عنبر',      intent:['الرزق','الكرم'],                     note:'الكريم في عطائه'},
+  'الرقيب':  {ab:312, wafq:null,  planet:'القمر', day:'الاثنين',mat:'فضة',                    inc:'صندل',      intent:['الحفظ','الأمان'],                    note:'الرقيب على الأفعال', exalt:'شرف القمر'},
+  'المجيب':  {ab:55,  wafq:null,  planet:'المشتري',day:'الخميس', mat:'فضة',                   inc:'عود',       intent:['استجابة الدعاء'],                    note:'مجيب الدعاء'},
+  'الواسع':  {ab:137, wafq:null,  planet:null,    day:null,      mat:null,                    inc:null,        intent:['الرزق'],                             note:'الواسع الرحمة'},
+  'الحكيم':  {ab:78,  wafq:null,  planet:'عطارد', day:'الأربعاء',mat:'كاغد',                  inc:'مصطكى',    intent:['الحكمة','حسن التدبير'],              note:'الحكيم في أفعاله'},
+  'الودود':  {ab:20,  wafq:'3x3',planet:'الزهرة',day:'الجمعة', mat:'فضة / حرير أحمر',        inc:'ورد وعنبر', intent:['جلب المحبة','المصالحة','الزواج'],    note:'بيخلي كل من يشوفك يميل إليك حباً', psych:'علاج الوحدة العاطفية', prophet:'محمد ﷺ (حرف الدال)'},
+  'المجيد':  {ab:57,  wafq:null,  planet:null,    day:null,      mat:null,                    inc:null,        intent:['المجد والعظمة'],                     note:'ذو المجد والعظمة'},
+  'الباعث':  {ab:573, wafq:'4x4',planet:'الشمس',  day:'الأحد',  mat:'ورق أبيض',               inc:'لبان',      intent:['علاج الكسل','استعادة الحيوية'],      note:'باعث الهمم من موتها', psych:'علاج الكسل والإرهاق الوجودي'},
+  'الشهيد':  {ab:319, wafq:null,  planet:null,    day:null,      mat:null,                    inc:null,        intent:['إظهار الحق'],                        note:'الشاهد على كل شيء'},
+  'الحق':    {ab:108, wafq:'4x4',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان',      intent:['إظهار الحق','انتصار العدالة'],       note:'الحق المبين', psych:'يُقوّي الشجاعة على قول الحق'},
+  'الوكيل':  {ab:66,  wafq:'3x3',planet:'المشتري',day:'الخميس',mat:'فضة',                    inc:'عود',       intent:['التوكل','النجاة من المخاطر'],         note:'الوكيل الأمين', prophet:'محمد ﷺ'},
+  'القوي':   {ab:116, wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'حديد',                   inc:'كبريت',     intent:['قوة الإرادة','الصمود','غلبة الأعداء'],note:'القوي المتين كالجبل', psych:'علاج ضعف الإرادة'},
+  'المتين':  {ab:500, wafq:'4x4',planet:'زحل',   day:'السبت',  mat:'رصاص / حديد',             inc:'كندر',      intent:['الثبات والصمود','الاستقرار'],        note:'الثابت الراسخ', psych:'علاج عدم الاستقرار العاطفي'},
+  'الولي':   {ab:46,  wafq:'3x3',planet:'المشتري',day:'الخميس',mat:'فضة',                    inc:'عود وعنبر', intent:['الولاية الإلهية','النصرة في الأزمات'],note:'لست وحدك', psych:'علاج الشعور بالوحدة والتخلي'},
+  'الحميد':  {ab:62,  wafq:'3x3',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان وعود', intent:['الشكر وجلب المزيد','حسن الثناء'],   note:'المحمود في أفعاله', prophet:'محمد ﷺ'},
+  'المحيي':  {ab:68,  wafq:'3x3',planet:'الشمس',  day:'الأحد',  mat:'ذهب',                   inc:'لبان',      intent:['إحياء الطاقة','الشفاء','النجاح بعد فشل'],note:'واهب الحياة', psych:'علاج الاكتئاب العميق', prophet:'عيسى عليه السلام'},
+  'الحي':    {ab:18,  wafq:'3x3',planet:null,    day:'الفجر',   mat:'حرير أخضر',             inc:'عود ومسك',  intent:['الحفظ من الموت','الديمومة'],         note:'الحي الأبدي', prophet:'الخضر عليه السلام'},
+  'القيوم':  {ab:156, wafq:'4x4',planet:null,    day:'الفجر',   mat:'حرير أبيض',             inc:'عود ومسك',  intent:['الثبات في الأزمات','الاكتفاء الذاتي'],note:'الاسم الأعظم مع الحي'},
+  'الواحد':  {ab:19,  wafq:'3x3',planet:null,    day:null,      mat:'ورق أبيض',              inc:'عود',       intent:['التوحيد الداخلي','تركيز الطاقة'],    note:'مركز كل الأسماء', psych:'علاج التشتت والتفكك الداخلي'},
+  'الصمد':   {ab:134, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'فضة',                    inc:'عنبر',      intent:['قضاء الحاجة العسيرة','البركة'],      note:'المقصود في كل الحاجات'},
+  'القادر':  {ab:305, wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'حديد',                   inc:'كبريت',     intent:['القدرة على الإنجاز','قهر العجز'],    note:'القادر على كل شيء'},
+  'الأول':   {ab:37,  wafq:'3x3',planet:null,    day:null,      mat:null,                    inc:null,        intent:['البدايات'],                          note:'الأول بلا بداية'},
+  'الآخر':   {ab:801, wafq:'4x4',planet:'زحل',   day:'السبت',   mat:null,                    inc:null,        intent:['إتمام الأمور','الختم بخير'],          note:'الآخر بلا نهاية'},
+  'الظاهر':  {ab:1106,wafq:'4x4',planet:'الشمس', day:'الأحد',   mat:'ذهب',                   inc:'لبان',      intent:['الظهور والوضوح','الشهرة'],           note:'الظاهر بآياته في الكون'},
+  'الباطن':  {ab:62,  wafq:'3x3',planet:'زحل',   day:'السبت',   mat:null,                    inc:'كافور',     intent:['الإخفاء','كتم الأسرار'],             note:'الباطن بكنهه'},
+  'التواب':  {ab:409, wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'ورق أبيض',               inc:'لبان وصندل',intent:['قبول التوبة','الغفران الكامل'],        note:'يفتح باب الرجوع دائماً', psych:'علاج اليأس من التوبة'},
+  'المنتقم': {ab:630, wafq:'4x4',planet:'المريخ',day:'الثلاثاء',mat:'نحاس أحمر',              inc:'كبريت وفلفل',intent:['الانتقام من الظالم المصرّ'],          note:'شديد الانتقام من المصرّين', warning:'للمظلوم الثابت ظلمه فقط'},
+  'الرؤوف':  {ab:286, wafq:'4x4',planet:'الزهرة',day:'الجمعة', mat:'فضة',                    inc:'ورد وزعفران',intent:['الرأفة والرحمة','الإصلاح العائلي'],   note:'أشد الرحمة رأفة', psych:'علاج القسوة في الشخصية', prophet:'محمد ﷺ'},
+  'الغني':   {ab:1060,wafq:'4x4',planet:'المشتري',day:'الخميس',mat:'ذهب / فضة',              inc:'عنبر وعود', intent:['الغنى بعد الفقر','الاستغناء'],        note:'الغني عن كل الخلق', psych:'علاج ذهنية الفقر', prophet:'سليمان عليه السلام'},
+  'النور':   {ab:256, wafq:'4x4',planet:'الشمس',  day:'الأحد',  mat:'ذهب / زجاج شفاف',       inc:'لبان ذكر',  intent:['نور القلب','الهداية في الحيرة'],     note:'يُضيء الظلمات الروحية', psych:'علاج الضياع الوجودي'},
+  'الهادي':  {ab:20,  wafq:'3x3',planet:'المشتري',day:'الخميس',mat:'فضة',                    inc:'عود',       intent:['الهداية للصواب','الاختيار الصحيح'],  note:'الهادي للصراط المستقيم', psych:'علاج التردد المزمن'},
+  'البديع':  {ab:86,  wafq:'3x3',planet:'الزهرة',day:'الجمعة', mat:'فضة / زئبق معقود',        inc:'ورد وميعة', intent:['الإبداع الفني','الابتكار'],            note:'مبدع الكون على غير مثال', psych:'يُحرّر التفكير من القيود'},
+  'الصبور':  {ab:298, wafq:'4x4',planet:'زحل',   day:'السبت',  mat:'رصاص',                  inc:'أسبند',     intent:['الصبر على المحن','الثبات في الابتلاء'],note:'الصبور الذي لا يعجل', psych:'علاج العجز عن الصبر على الألم', prophet:'أيوب عليه السلام'},
+};
+
+const INTENTS = [
+  'محبة وزواج','رزق ومال','حماية وحفظ','علم ودراسة',
+  'شفاء ومرض','هيبة وسلطة','قهر وانتقام','توبة وغفران',
+  'إبداع وفن','قرار وهداية','صبر وثبات','طاقة وهمة',
+];
+
+const INTENT_MAP = {
+  'محبة وزواج':  ['الودود','الرحيم','الرحمن','اللطيف','الرؤوف','المصور'],
+  'رزق ومال':   ['الرزاق','الوهاب','الباسط','الغني','الفتاح','الكريم'],
+  'حماية وحفظ': ['المؤمن','المهيمن','السلام','الولي','الحفيظ','الوكيل'],
+  'علم ودراسة': ['العليم','الخبير','الحكيم','الخالق','النور','الهادي'],
+  'شفاء ومرض':  ['الرحيم','البارئ','اللطيف','المحيي','الرؤوف'],
+  'هيبة وسلطة': ['الملك','العزيز','الجبار','المعز','العظيم','القوي'],
+  'قهر وانتقام':['القهار','المنتقم','الجبار','القوي','المتين','الخافض'],
+  'توبة وغفران':['الغفار','التواب','الرحمن','الرحيم','الصبور'],
+  'إبداع وفن':  ['البديع','المصور','الخالق','البارئ'],
+  'قرار وهداية':['الهادي','الوكيل','الحكيم','البصير'],
+  'صبر وثبات':  ['الصبور','الحليم','المتين','القيوم'],
+  'طاقة وهمة':  ['الباعث','المحيي','القادر','الحي','الفتاح'],
+};
+
+const PLANET_COLORS_ASMA = {
+  'الشمس':'#F4D03F','القمر':'#BDC3C7','المريخ':'#E74C3C',
+  'عطارد':'#95A5A6','المشتري':'#3498DB','الزهرة':'#27AE60',
+  'زحل':'#7F8C8D', null:'#5b4a7a',
+};
+
+// ── Render Asma Vault ────────────────────────────────────────────
+function renderAsmaVault(filter = 'all') {
+  const grid = document.getElementById('asma-vault-grid');
+  const entries = Object.entries(ASMA_99).filter(([name, d]) => {
+    if (filter === 'all') return true;
+    if (filter === 'warning') return !!d.warning;
+    return d.planet === filter;
+  });
+
+  grid.innerHTML = entries.map(([name, d]) => {
+    const col = PLANET_COLORS_ASMA[d.planet] || '#5b4a7a';
+    return `
+    <div class="asma-vault-card ${d.warning ? 'has-warning' : ''}"
+         onclick="showAsmaDetail('${name}')">
+      <span class="asma-planet-dot" style="background:${col};opacity:0.7;"></span>
+      <span class="asma-name-ar">${name}</span>
+      <span class="asma-abjad">${d.ab} • ${d.wafq || '—'} • ${d.planet || 'كوني'}</span>
+      <div class="asma-note">${d.note || ''}</div>
+      ${d.warning ? '<div style="margin-top:6px;font-size:10px;color:var(--crimson);">⚠ ' + d.warning + '</div>' : ''}
+    </div>`;
+  }).join('');
+}
+
+function filterAsma(filter, btn) {
+  document.querySelectorAll('.asma-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAsmaVault(filter);
+}
+
+async function showAsmaDetail(name) {
+  const d = ASMA_99[name] || {};
+  document.getElementById('modal-title').innerHTML =
+    `<span style="font-family:Amiri;font-size:28px;color:var(--gold)">${name}</span>
+     <span style="font-size:11px;color:#555;margin-right:8px;font-family:monospace">⏳ جاري التحميل...</span>`;
+  document.getElementById('detailModal').classList.add('open');
+
+  // Build base content immediately from local data
+  const col = PLANET_COLORS_ASMA[d.planet] || '#888';
+  let html = `
+    <div class="modal-row"><span class="lbl">العدد الأبجدي</span>
+      <span class="val" style="color:var(--gold);font-size:22px;font-weight:700">${d.ab || '—'}</span></div>
+    <div class="modal-row"><span class="lbl">الكوكب الحاكم</span>
+      <span class="val" style="color:${col}">${d.planet || 'كوني'}</span></div>
+    <div class="modal-row"><span class="lbl">اليوم المناسب</span>
+      <span class="val">${d.day || '—'}</span></div>
+    <div id="asma-manuscript-data"><div style="text-align:center;padding:20px;color:#555;font-size:12px;">⌛ جاري جلب بيانات المخطوطة...</div></div>`;
+  document.getElementById('modal-content').innerHTML = html;
+
+  // Fetch manuscript data from API
+  try {
+    const resp = await fetch('/api/asma/full_details/' + encodeURIComponent(name));
+    const ms = await resp.json();
+    const mEl = document.getElementById('asma-manuscript-data');
+    if (ms.success) {
+      let msHtml = '';
+      if (ms.intents?.length) msHtml += `<div class="modal-row"><span class="lbl">الأغراض والنوايا</span>
+        <span class="val" style="color:#a0d8b3">${ms.intents.join(' — ')}</span></div>`;
+      if (ms.incense) msHtml += `<div class="modal-row"><span class="lbl">البخور</span>
+        <span class="val" style="color:var(--jade)">${ms.incense}</span></div>`;
+      if (ms.psychology) msHtml += `<div class="modal-row"><span class="lbl">الأثر النفسي</span>
+        <span class="val" style="color:var(--aurora2);font-style:italic">${ms.psychology}</span></div>`;
+      if (ms.quote) msHtml += `<div style="margin-top:14px;padding:12px 14px;
+        background:rgba(200,168,75,0.06);border:1px solid rgba(200,168,75,0.2);
+        border-right:3px solid var(--gold);border-radius:4px;font-size:12px;
+        color:rgba(255,255,255,0.75);line-height:2;font-family:'Amiri',serif">
+        📜 ${ms.quote}</div>`;
+      if (ms.wafq) {
+        const sz = ms.wafq.length;
+        msHtml += `<div style="margin-top:14px"><div style="font-size:10px;color:#888;
+          margin-bottom:8px;letter-spacing:2px">الوفق من المخطوطة (${sz}×${sz})</div>
+          <div style="display:inline-grid;grid-template-columns:repeat(${sz},40px);gap:2px">
+          ${ms.wafq.flat().map(v=>
+            `<div style="width:40px;height:36px;display:flex;align-items:center;justify-content:center;
+             background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.2);
+             font-size:13px;color:var(--gold);font-weight:700">${v??'●'}</div>`
+          ).join('')}</div></div>`;
+      }
+      if (ms.warning) msHtml += `<div style="margin-top:12px;padding:10px;
+        background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);
+        border-radius:6px;font-size:12px;color:var(--crimson)">⚠ ${ms.warning}</div>`;
+      mEl.innerHTML = msHtml || '<div style="color:#555;font-size:11px;padding:10px">لا توجد بيانات إضافية في المخطوطة</div>';
+    } else {
+      mEl.innerHTML = `<div style="color:#555;font-size:11px;padding:10px">${ms.error || 'بيانات المخطوطة غير متاحة'}</div>`;
+    }
+    // Update title
+    document.getElementById('modal-title').innerHTML =
+      `<span style="font-family:Amiri;font-size:28px;color:var(--gold)">${name}</span>
+       <span style="font-size:10px;color:#4caf50;margin-right:8px">✓ بيانات المخطوطة</span>`;
+  } catch(e) {
+    document.getElementById('asma-manuscript-data').innerHTML =
+      `<div style="color:#666;font-size:11px;padding:10px">تعذّر الاتصال بالخادم</div>`;
+  }
+}
+
+// ── Render Smart Suggester ───────────────────────────────────────
+function renderAsmaSuggest() {
+  const btns = document.getElementById('intent-buttons');
+  btns.innerHTML = INTENTS.map(i =>
+    `<button class="intent-btn" onclick="selectIntent('${i}', this)">${i}</button>`
+  ).join('');
+}
+
+function selectIntent(intent, btn) {
+  document.querySelectorAll('.intent-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const names = INTENT_MAP[intent] || [];
+  const container = document.getElementById('suggest-cards');
+  const results = document.getElementById('suggest-results');
+  results.style.display = 'block';
+
+  container.innerHTML = names.map(name => {
+    const d = ASMA_99[name] || {};
+    const col = PLANET_COLORS_ASMA[d.planet] || '#5b4a7a';
+    return `
+    <div class="suggest-card" onclick="showAsmaDetail('${name}')" style="cursor:pointer">
+      <div class="suggest-abjad">
+        <span class="suggest-abjad-num" style="color:${col}">${d.ab || '—'}</span>
+        <span class="suggest-abjad-lbl">أبجد</span>
+        <span style="font-family:Amiri;font-size:22px;color:var(--crystal);margin-top:4px;">${name}</span>
+      </div>
+      <div>
+        <div class="suggest-name" style="font-size:18px;">${d.note || ''}</div>
+        ${d.psych ? `<div class="suggest-psych">🔮 ${d.psych}</div>` : ''}
+        <div class="suggest-meta">
+          ${d.planet ? `<span class="meta-tag" style="color:${col}">☽ ${d.planet}</span>` : ''}
+          ${d.day ? `<span class="meta-tag">${d.day}</span>` : ''}
+          ${d.wafq ? `<span class="meta-tag">وفق ${d.wafq}</span>` : ''}
+          ${d.mat ? `<span class="meta-tag">📝 ${d.mat}</span>` : ''}
+        </div>
+        ${d.warning ? `<div style="margin-top:8px;font-size:11px;color:var(--crimson)">⚠ ${d.warning}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+
+
+const CHAPTERS = {
+  1:"الحروف المعجمة وأسرارها", 2:"الكسر والبسط وتوقيت الأعمال",
+  3:"الساعات الفلكية وأحكامها", 4:"المنازل القمرية الثمانية والعشرون",
+  5:"أسرار الكواكب السبعة", 6:"علم الأوفاق (المربعات السحرية)",
+  7:"استخدامات الحروف العربية", 8:"أسرار الأسماء الحسنى — القسم الأول",
+  9:"أسرار الأسماء الحسنى — القسم الثاني", 10:"الطلاسم والعزائم",
+  11:"الخلوات والاعتكافات", 12:"علم الجفر", 13:"علم الزايرجة",
+  14:"الكيمياء الروحانية", 15:"أسرار الفاتحة وسور القرآن",
+  16:"البروج والأبراج الاثنا عشر", 17:"أسماء الله الحسنى — التفصيل الكامل",
+  18:"الحروف العربية وارتباطها بالإنسان", 19:"أسرار الأعداد والحساب الأبجدي",
+  20:"الملائكة الموكلون بالحروف", 21:"أعمال المحبة والجلب",
+  22:"أعمال الفراق والطرد", 23:"أعمال الحفظ والحماية",
+  24:"أعمال العلاج والشفاء", 25:"الأدعية والأحزاب",
+  26:"البخور ومواده وخصائصه", 27:"المعادن وخصائصها الروحانية",
+  28:"أحكام الرياح والاتجاهات", 29:"الشمس وأسرارها",
+  30:"القمر وهندسته المكانية", 31:"التواقيف الأربعة",
+  32:"علم الزايرجة الدائرية", 33:"استخدام الجفر المتقدم",
+  34:"الرياضات الروحية", 35:"أسماء الملائكة والخدام",
+  36:"الأسرار المكانية والجغرافيا الروحانية", 37:"خوارزمية الإحياء والفتح",
+  38:"مصفوفات الزمن — التواقيف", 39:"الرياح والساعات الزمانية",
+  40:"الختم والخاتمة الكبرى"
+};
+
+const LETTER_DATA = [
+  {ch:"أ",ab:1,el:"نارية",pl:"المريخ",man:"الشرطين",angel:"سمسمائيل",code:"هدهيوب سمطايا"},
+  {ch:"ب",ab:2,el:"هوائية",pl:"الزهرة",man:"البطين",angel:"تسيخائيل",code:"تسيخ"},
+  {ch:"ج",ab:3,el:"مائية",pl:"زحل",man:"الثريا",angel:"مهايجائيل",code:"مهايج"},
+  {ch:"د",ab:4,el:"ترابية",pl:"المشتري",man:"الدبران",angel:"دفيائيل",code:"دفيا"},
+  {ch:"ه",ab:5,el:"نارية",pl:"المريخ",man:"الهقعة",angel:"هيئائيل",code:"هيئا"},
+  {ch:"و",ab:6,el:"هوائية",pl:"الشمس",man:"الهنعة",angel:"وازيائيل",code:"وازيا"},
+  {ch:"ز",ab:7,el:"مائية",pl:"الزهرة",man:"الذراع",angel:"زفيلائيل",code:"زفيلا"},
+  {ch:"ح",ab:8,el:"ترابية",pl:"عطارد",man:"النثرة",angel:"حسيائيل",code:"حسيا"},
+  {ch:"ط",ab:9,el:"نارية",pl:"القمر",man:"الطرفة",angel:"طيفائيل",code:"طيفا"},
+  {ch:"ي",ab:10,el:"هوائية",pl:"المشتري",man:"الجبهة",angel:"يوفيائيل",code:"يوفيا"},
+  {ch:"ك",ab:20,el:"مائية",pl:"الشمس",man:"الزبرة",angel:"كموائيل",code:"كموا"},
+  {ch:"ل",ab:30,el:"ترابية",pl:"القمر",man:"الصرفة",angel:"لوفيائيل",code:"لوفيا"},
+  {ch:"م",ab:40,el:"نارية",pl:"عطارد",man:"العواء",angel:"ميخائيل",code:"ميخا"},
+  {ch:"ن",ab:50,el:"هوائية",pl:"الزهرة",man:"السماك",angel:"نوريائيل",code:"نوريا"},
+  {ch:"س",ab:60,el:"مائية",pl:"المريخ",man:"الغفر",angel:"سفيائيل",code:"سفيا"},
+  {ch:"ع",ab:70,el:"ترابية",pl:"المشتري",man:"الزبانا",angel:"عزرائيل",code:"عزرا"},
+  {ch:"ف",ab:80,el:"نارية",pl:"الشمس",man:"الإكليل",angel:"فريائيل",code:"فريا"},
+  {ch:"ص",ab:90,el:"هوائية",pl:"المريخ",man:"القلب",angel:"صلتيائيل",code:"صلتيا"},
+  {ch:"ق",ab:100,el:"مائية",pl:"المريخ",man:"الشولة",angel:"قفسيائيل",code:"قفسيا"},
+  {ch:"ر",ab:200,el:"ترابية",pl:"المشتري",man:"النعائم",angel:"رمائيل",code:"رما"},
+  {ch:"ش",ab:300,el:"نارية",pl:"زحل",man:"البلدة",angel:"شمسيائيل",code:"شمسيا"},
+  {ch:"ت",ab:400,el:"هوائية",pl:"المريخ",man:"سعد الذابح",angel:"تميائيل",code:"تميا"},
+  {ch:"ث",ab:500,el:"هوائية",pl:"الزهرة",man:"سعد بلع",angel:"ثوبيائيل",code:"ثوبيا"},
+  {ch:"خ",ab:600,el:"ترابية",pl:"الزهرة",man:"سعد السعود",angel:"خيائيل",code:"خيا"},
+  {ch:"ذ",ab:700,el:"نارية",pl:"عطارد",man:"سعد الأخبية",angel:"ذبيائيل",code:"ذبيا"},
+  {ch:"ض",ab:800,el:"هوائية",pl:"القمر",man:"فرغ المقدم",angel:"ضيائيل",code:"ضيا"},
+  {ch:"ظ",ab:900,el:"هوائية",pl:"الشمس",man:"فرغ المؤخر",angel:"ظهيرائيل",code:"ظهيرا"},
+  {ch:"غ",ab:1000,el:"ترابية",pl:"زحل",man:"الرشا",angel:"غيائيل",code:"غيا"},
+];
+
+const EL_COLORS = {نارية:"#e74c3c",هوائية:"#74c0fc",مائية:"#3bc9db",ترابية:"#a67c52",ممتزجة:"#c084fc"};
+const EL_CLASS  = {نارية:"el-fire",هوائية:"el-air",مائية:"el-water",ترابية:"el-earth",ممتزجة:"el-mixed"};
+
+const MANSIONS = [
+  {n:1,name:"الشرطين",fort:"نحس",let:"أ",ab:1,el:"نارية",uses:"قهر الظلمة والمتجبرين",inc:"فلفل وحبة سوداء",birth:"مَن يولد فيه يكون فاسداً",angel:"سمسمائيل",count:111},
+  {n:2,name:"البطين",fort:"سعد",let:"ب",ab:2,el:"هوائية",uses:"الطلسمات والكيمياء، القبول على الملوك",inc:"عود وزعفران",birth:"مَن يولد فيه يكون سعيداً رشيداً",angel:"تسيخائيل",count:222},
+  {n:3,name:"الثريا",fort:"ممتزج",let:"ج",ab:3,el:"ممتزجة",uses:"التزويج والمحبة والجمع",inc:"بزر كتان",birth:"المولود فيها سعيد ومحمود",angel:"مهايجائيل",count:333},
+  {n:4,name:"الدبران",fort:"نحس",let:"د",ab:4,el:"ترابية",uses:"الفساد والدفن وتخريب الحوائج",inc:"قشر رمان ولبان",birth:"المولود فيه شقي",angel:"دفيائيل",count:444},
+  {n:5,name:"الهقعة",fort:"سعد",let:"ه",ab:5,el:"نارية",uses:"الصيد وإمساك الحيوانات",inc:"مر وكافور",birth:"يميل للإتقان والصنعة",angel:"هيئائيل",count:55},
+  {n:6,name:"الهنعة",fort:"ممتزج",let:"و",ab:6,el:"هوائية",uses:"السفر والتجارة البعيدة",inc:"ماء الورد وصندل",birth:"محظوظ في الأسفار",angel:"وازيائيل",count:66},
+  {n:7,name:"الذراع",fort:"سعد",let:"ز",ab:7,el:"هوائية",uses:"التجارة والمتاجر والفتوح",inc:"عنبر وزعفران",birth:"غني ذو مال وجاه",angel:"زفيلائيل",count:77},
+  {n:8,name:"النثرة",fort:"سعد",let:"ح",ab:8,el:"مائية",uses:"الصيد والأسفار والغوص",inc:"قرفة وهيل",birth:"يحب البحر والسفر",angel:"حسيائيل",count:88},
+  {n:9,name:"الطرفة",fort:"نحس",let:"ط",ab:9,el:"مائية",uses:"إصابة الأعداء والظلمة",inc:"حلتيت وشبث",birth:"يعاني الأمراض",angel:"طيفائيل",count:99},
+  {n:10,name:"الجبهة",fort:"سعد",let:"ي",ab:10,el:"نارية",uses:"التعاون والمعاهدات",inc:"مصطكى وميعة",birth:"قائد وحاكم",angel:"يوفيائيل",count:100},
+  {n:11,name:"الزبرة",fort:"سعد",let:"ك",ab:20,el:"هوائية",uses:"السفر والمحبة",inc:"ورد وريحان",birth:"محبوب عند الناس",angel:"كموائيل",count:110},
+  {n:12,name:"الصرفة",fort:"ممتزج",let:"ل",ab:30,el:"مائية",uses:"تغيير الأحوال",inc:"كندر وأسبند",birth:"يشهد تقلبات في حياته",angel:"لوفيائيل",count:120},
+  {n:13,name:"العواء",fort:"سعد",let:"م",ab:40,el:"هوائية",uses:"التجارة واتفاقات الأعمال",inc:"عود هندي وصندل",birth:"تاجر ذكي",angel:"ميخائيل",count:130},
+  {n:14,name:"السماك",fort:"سعد",let:"ن",ab:50,el:"نارية",uses:"الحصاد وجمع الخيرات",inc:"ورد جوري وعنبر",birth:"غني بالخيرات",angel:"نوريائيل",count:140},
+  {n:15,name:"الغفر",fort:"سعد",let:"س",ab:60,el:"مائية",uses:"طلب الغفران والتطهير الروحي",inc:"لبان ذكر وكافور",birth:"يميل للزهد والتقوى",angel:"سفيائيل",count:150},
+  {n:16,name:"الزبانا",fort:"ممتزج",let:"ع",ab:70,el:"ترابية",uses:"إنجاز الشراكات وعقود البيع",inc:"مر وصبر",birth:"قاضٍ أو حاكم",angel:"عزرائيل",count:160},
+  {n:17,name:"الإكليل",fort:"سعد",let:"ف",ab:80,el:"نارية",uses:"استمالة الحكام والملوك",inc:"ورد وزعفران وعنبر",birth:"قائد مكلّل بالنصر",angel:"فريائيل",count:170},
+  {n:18,name:"القلب",fort:"نحس",let:"ص",ab:90,el:"نارية",uses:"تقوية القلب وقهر الخصوم",inc:"كبريت وفلفل",birth:"قوي الشكيمة",angel:"صلتيائيل",count:180},
+  {n:19,name:"الشولة",fort:"نحس",let:"ق",ab:100,el:"نارية",uses:"الصيد والإيقاع بالأعداء",inc:"حلتيت وثوم",birth:"يميل للصيد والقتال",angel:"قفسيائيل",count:190},
+  {n:20,name:"النعائم",fort:"ممتزج",let:"ر",ab:200,el:"ترابية",uses:"ترويض الحيوانات",inc:"وبر أرنب وريش",birth:"يحب الحيوانات والطبيعة",angel:"رمائيل",count:200},
+  {n:21,name:"البلدة",fort:"نحس",let:"ش",ab:300,el:"ترابية",uses:"الهروب والفرار والاختفاء",inc:"أسود وزفت",birth:"يعاني وحدة وتشتت",angel:"شمسيائيل",count:210},
+  {n:22,name:"سعد الذابح",fort:"ممتزج",let:"ت",ab:400,el:"هوائية",uses:"الذبح والقرابين وإهلاك الأعداء",inc:"دم الأخوين وكبريت",birth:"حازم وصارم",angel:"تميائيل",count:220},
+  {n:23,name:"سعد بلع",fort:"سعد",let:"ث",ab:500,el:"هوائية",uses:"دفع الأذى والحماية",inc:"لبان وصمغ",birth:"واقٍ لغيره",angel:"ثوبيائيل",count:230},
+  {n:24,name:"سعد السعود",fort:"سعد جداً",let:"خ",ab:600,el:"مائية",uses:"تحقيق السعادة العظمى والفتح الكبير",inc:"عود أبيض وعنبر ومسك",birth:"محظوظ سعيد في الدنيا والآخرة",angel:"خيائيل",count:240},
+  {n:25,name:"سعد الأخبية",fort:"سعد",let:"ذ",ab:700,el:"مائية",uses:"الكشف عن الكنوز وإخفاء الأسرار",inc:"مر وزعفران",birth:"يكتشف الخفايا",angel:"ذبيائيل",count:250},
+  {n:26,name:"فرغ الدلو المقدم",fort:"سعد",let:"ض",ab:800,el:"مائية",uses:"استخراج الكنوز وفتح الرزق",inc:"كافور وماء ورد",birth:"رزاق وافر",angel:"ضيائيل",count:260},
+  {n:27,name:"فرغ الدلو المؤخر",fort:"سعد",let:"ظ",ab:900,el:"هوائية",uses:"تحرير المأسور وإخراج المحبوس",inc:"ريحان وورد",birth:"يحرر نفسه من القيود",angel:"ظهيرائيل",count:270},
+  {n:28,name:"الرشا",fort:"ممتزج",let:"غ",ab:1000,el:"مائية",uses:"الختم والإنهاء وإتمام الأمور",inc:"مسك وعنبر",birth:"يُختم له بخير",angel:"غيائيل",count:280},
+];
+
+const PLANETS = [
+  {name:"الشمس",cls:"sun",day:"الأحد",metal:"الذهب",col:"#F4D03F",el:"نارية",num:6,let:"و",wafq:"٦×٦",good:"المحبة، الشفاء، الدخول على السلاطين",angel:"ميططرون",inc:"لبان ذكر وعود"},
+  {name:"القمر",cls:"moon",day:"الاثنين",metal:"الفضة",col:"#BDC3C7",el:"مائية",num:9,let:"ط",wafq:"٩×٩",good:"السفر، الأحلام، العلاج، الكشف",angel:"جبريل",inc:"كافور وصندل أبيض"},
+  {name:"المريخ",cls:"mars",day:"الثلاثاء",metal:"الحديد والنحاس الأحمر",col:"#E74C3C",el:"نارية",num:5,let:"ه",wafq:"٥×٥",good:"قهر الظلمة، دفع الأعداء، الشجاعة",angel:"سمائيل",inc:"كبريت وفلفل وحلتيت"},
+  {name:"عطارد",cls:"merc",day:"الأربعاء",metal:"الزئبق",col:"#95A5A6",el:"ممتزجة",num:8,let:"ح",wafq:"٨×٨",good:"العلم، الكتابة، التجارة، الفصاحة",angel:"رفائيل",inc:"مصطكى ومر"},
+  {name:"المشتري",cls:"jup",day:"الخميس",metal:"القصدير",col:"#3498DB",el:"هوائية",num:4,let:"د",wafq:"٤×٤",good:"الخير والبركة، طلب الرزق، المحبة العامة",angel:"صدكيائيل",inc:"عود وعنبر ومسك"},
+  {name:"الزهرة",cls:"ven",day:"الجمعة",metal:"النحاس",col:"#27AE60",el:"هوائية",num:7,let:"ز",wafq:"٧×٧",good:"المحبة، الزواج، الجمال، الطرب",angel:"أنائيل",inc:"ورد وياسمين وزعفران"},
+  {name:"زحل",cls:"sat",day:"السبت",metal:"الرصاص",col:"#7F8C8D",el:"ترابية",num:3,let:"ج",wafq:"٣×٣",good:"الثبات، قضاء الديون، الحفر والاستخراج",angel:"كسفيائيل",inc:"أسود وأسبند وحلتيت"},
+];
+
+const LAWS = [
+  {name:"قانون اليقين والصبر",form:"طهارة + نية جازمة + عدم استعجال = استجابة حتمية",analogy:"زرع البذرة — الحفر للتحقق يومياً يقتلها",page:4},
+  {name:"قانون التوحيد كبوابة للكشف",form:"عمق التوحيد ← تمدد الوعي ← إدراك العوالم غير المرئية",analogy:"عقيدة التوحيد كتلسكوب فلكي دقيق",page:2},
+  {name:"قانون منهجية المنفعة المزدوجة",form:"المسار الروحي (معرفة الله) + المسار المادي (قضاء الحوائج)",analogy:"أسماء الله كأرقام سرية لخزائن متعددة",page:1},
+  {name:"قاعدة الكتمان والمحرمية",form:"كشف الأسرار لغير المؤهلين = سلب البركة",analogy:"لا تعطِ سلاحاً متطوراً لطفل",page:3},
+  {name:"قانون السلسلة الكونية",form:"طلب → يصعد سلسلة الكواكب → يصل المصدر → يعود بالاستجابة",analogy:"الكون شركة كبرى — العرش مدير عام، الكواكب مديرو إدارات",page:5},
+  {name:"قاعدة التطابق العددي",form:"التأثير على الطبائع الأربعة = حرف قيمته ٤ في شكل رباعي",analogy:"حرف الدال (د) + المربع = توازن الطبائع الأربعة",page:6},
+  {name:"قانون التطابق الشامل",form:"العدد الصحيح + الكوكب + الحرف + النية = استجابة كاملة",analogy:"إطلاق الصاروخ يتطلب نافذة إطلاق محددة",page:10},
+  {name:"قانون الدقة الطقسية",form:"العدد + المادة الصحيحة + التوقيت الفلكي + الحالة النفسية = نجاح",analogy:"معادلة كيميائية — نقص أي عنصر يفسد التفاعل",page:8},
+  {name:"خوارزمية العلاج بالضد",form:"الحمى (حارة يابسة) → حروف باردة ويابسة → إطفاء الحرارة",analogy:"المضاد الحيوي الحرفي — استخدام الطبيعة المضادة للعلاج",page:11},
+  {name:"قانون الرنين الكوكبي",form:"الغرض → الكوكب المتوافق → ساعته → تنفيذ العمل حصراً",analogy:"نافذة الإطلاق الفضائية — الإطلاق في الزاوية المثلى",page:13},
+];
+
+const COSMIC = [
+  {level:1,name:"العرش",type:"divine",letter:"",feeds:"الكرسي"},
+  {level:2,name:"الكرسي",type:"divine",letter:"",feeds:"فلك زحل"},
+  {level:3,name:"فلك زحل",type:"planet",letter:"ج",feeds:"فلك المشتري"},
+  {level:4,name:"فلك المشتري",type:"planet",letter:"د",feeds:"فلك المريخ"},
+  {level:5,name:"فلك المريخ",type:"planet",letter:"ه",feeds:"فلك الشمس"},
+  {level:6,name:"فلك الشمس",type:"planet",letter:"و",feeds:"فلك الزهرة"},
+  {level:7,name:"فلك الزهرة",type:"planet",letter:"ز",feeds:"فلك عطارد"},
+  {level:8,name:"فلك عطارد",type:"planet",letter:"ح",feeds:"فلك القمر"},
+  {level:9,name:"فلك القمر",type:"planet",letter:"ط",feeds:"العناصر الأربعة"},
+  {level:10,name:"العالم المادي (العناصر الأربعة)",type:"element",letter:"",feeds:""},
+];
+
+const PAGES = [
+  {n:1,title:"الغلاف — تعريف الكتاب وهدفه",summary:"تعريف الكتاب وعنوانه الكامل. الهدف: الكشف عن شرف أسماء الله الحسنى وكيفية تصريفها لتحقيق المرتبة الروحية والرغبات الدنيوية.",law:"منهجية المنفعة المزدوجة",analogy:"أسماء الله كأرقام سرية لخزائن متعددة",chapter:"مقدمة"},
+  {n:2,title:"مقدمة المؤلف — شهادة الأزل",summary:"يفتتح البوني بشهادة الأزل ويبين أن صفوة العلماء يستمدون علومهم من نور الشهادتين. من يفهم سرهما تنكشف له عوالم الغيب.",law:"قانون التوحيد كبوابة للكشف",analogy:"عقيدة التوحيد كتلسكوب فلكي دقيق",chapter:"مقدمة"},
+  {n:3,title:"الخطبة — الشريعة والحقيقة",summary:"يؤسس البوني التوازن بين الشريعة والحقيقة. سعادة الإنسان مقرونة بالالتزام بشريعة الله. يحرّم كشف الأسرار لغير المستحقين.",law:"قاعدة الكتمان والمحرمية",analogy:"لا تعطِ سلاحاً نارياً لطفل",chapter:"مقدمة"},
+  {n:4,title:"شروط القراءة والعمل بالكتاب",summary:"شروط العمل: الطهارة، الذكر، النية الصالحة، اليقين القاطع. الكتاب ٤٠ فصلاً. تحذير صارم من الشك والاستعجال.",law:"قانون اليقين والصبر",analogy:"زراعة البذرة — الحفر للتحقق يقتلها",chapter:"مقدمة"},
+  {n:5,title:"الفصل الأول — الحروف المعجمة وسلسلة الكون",summary:"يشرح رغبات الناس الدنيوية والأخروية. يطرح نظرية التراتبية الكونية: العالم العلوي يمد السفلي بالطاقة عبر سلسلة الكواكب.",law:"قانون السلسلة الكونية",analogy:"الكون كشركة كبرى — العرش المدير العام",chapter:"الفصل ١"},
+  {n:6,title:"هندسة الحروف وارتباطها بالإنسان",summary:"الحروف العربية ٢٨ تتطابق مع منازل القمر ٢٨. حرف الدال (د=٤) مرتبط بالمشتري ويوم الاثنين واسم الله الودود واسم النبي محمد وأحمد.",law:"قاعدة التطابق العددي",analogy:"قيمة الحرف = عدد الأضلاع = طبائع الجسم",chapter:"الفصل ١"},
+  {n:7,title:"تشريح القلوب وأنوار الفؤاد",summary:"التشريح الصوفي للوعي البشري: القلب له ٣ تجاويف. الفؤاد هو الأعمق — محل الإيمان الخالص والبصيرة التي ترى الملكوت.",law:"منهجية التدرج في الإدراك",analogy:"الغواصة: السطح → الوسط → الأعماق",chapter:"الفصل ١"},
+  {n:8,title:"التطبيقات العملية لحرف الدال",summary:"كتابة الدال ٣٥ مرة على حريرة بيضاء يوم الاثنين (القمر في السرطان) لجلب الرزق. الأوفاق لحفظ الإنسان وعلاج الحمى وسم العقارب.",law:"قانون الدقة الطقسية",analogy:"معادلة كيميائية دقيقة — نقص عنصر يفسد التفاعل",chapter:"الفصل ١"},
+  {n:9,title:"الفصل الثاني — خوارزمية الكسر والبسط",summary:"خوارزمية مفصلة لاستخراج الطاقة: اسم الهدف + الكوكب + المنزلة → بسط الحروف → فرز الطبائع → استخراج اسم الله المناسب.",law:"خوارزمية الكسر والبسط",analogy:"كود برمجي مدمر — الحروف النارية تحرق الفيروس",chapter:"الفصل ٢"},
+  {n:10,title:"العزيمة وآلية استدعاء الطاقة",summary:"بعد الحساب: قراءة العزيمة ١١١ مرة (قيمة الألف). استدعاء الملك سمسمائيل لتسليط طاقة المريخ. المنزلة البطين للقبول والكيمياء.",law:"قانون التطابق الشامل",analogy:"الخزنة الإلكترونية — الباسوورد الصحيح يفتح الباب",chapter:"الفصل ٢"},
+  {n:11,title:"الجدول الدوري — تصنيف الحروف الأربع",summary:"الجدول الدوري للحروف حسب الطبائع. خوارزمية العلاج: الحمى حارة يابسة → علاجها بحروف باردة يابسة (حروف مضادة).",law:"خوارزمية العلاج بالضد",analogy:"الحمى = نار → المضاد الحيوي الحرفي (حروف باردة)",chapter:"الفصل ٢"},
+  {n:13,title:"الساعات الفلكية — جدول التشغيل الزمني",summary:"كل ساعة من الليل والنهار مرتبطة بكوكب محدد. يوم الأحد الساعة ١ (الشمس) للمحبة، الساعة ٥ (زحل) للعداوة.",law:"قانون الرنين الكوكبي",analogy:"نافذة إطلاق الصاروخ — الإطلاق في الزاوية الهندسية المثلى",chapter:"الفصل ٣"},
+  {n:15,title:"شيفرات الاستدعاء الملائكي — الإضمار",summary:"خوارزمية إضمار الملائكة: كل حرف له ملاك وكود سري. من يعرف الإضمار الصحيح لا يمكن للملاك التخلف عن طاعته.",law:"ميكانيكية الروحانيات",analogy:"خزنة إلكترونية — الرقم يُعطيك الباسوورد السري",chapter:"الفصل ٤"},
+  {n:16,title:"البرمجة القمرية — أحكام المنازل ٢٨",summary:"تحليل معمق لكل منزلة قمرية: طبعها، أثرها على المواليد، بخورها، استخداماتها. المعادلة: المنزلة + الحرف + البخور = عمل كامل.",law:"قانون التناغم المادي والفلكي",analogy:"القمر كمحطة بث فضائية تبث موجات مختلفة",chapter:"الفصل ٤"},
+  {n:23,title:"مصفوفات الملائكة الأربعة",summary:"جبريل → مصفوفة ٧×٧ (يوم الإثنين). إسرافيل → ٤×٤ (الخميس). عزرائيل → ٣×٣ (السبت). ميكائيل → ٨×٨ (الأربعاء).",law:"التشفير الهندسي للطاقة",analogy:"سيرفرات الكون — كل ملاك له IP address محدد",chapter:"الفصل ٦"},
+  {n:24,title:"بروتوكول التنفيذ المادي",summary:"مكان وضع الوفق حسب برج القمر: برج هوائي → يُعلق، ناري → يُدفن في النار، مائي → يوضع في الماء، ترابي → يُدفن في الأرض.",law:"قانون التوافق البيئي",analogy:"الدائرة الكهربائية تحتاج بيئة موصّلة",chapter:"الفصل ٦"},
+];
+
+const GLOSSARY = {
+  "الوفق":"جدول هندسي (مثلث، مربع، مخمس) توزع فيه الأرقام بقواعد رياضية لتكوين طاقة روحانية",
+  "الطلسم":"رمز أو نص مكتوب بمواد وشروط معينة يُعتقد أنه يحمل طاقة روحانية محددة",
+  "العزيمة":"النص المنطوق الذي يوجه الطاقة المُجمَّعة نحو الهدف المحدد",
+  "الزايرجة":"علم التنبؤ وإجابة الأسئلة بحسابات الحروف والأرقام والدوائر الفلكية",
+  "الجفر":"علم باطني للتنبؤ واستخراج المعاني الخفية من الحروف والأرقام",
+  "الخلوة":"الانعزال في مكان طاهر للعبادة والذكر المستمر لتنقية الروح",
+  "الإضمار":"الكود السري (غالباً سرياني) لاستفزاز طاقة الملاك الحاكم للحرف",
+  "البسط":"تفكيك الكلمة لحروف منفصلة — عملية التحليل الأولى",
+  "الكسر":"إعادة دمج الحروف وحسابها لاستخراج الطاقة — عملية التركيب",
+  "الطبائع الأربع":"الحرارة والبرودة والرطوبة واليبوسة — مفتاح تصنيف كل شيء في الكون",
+  "الأخلاط الأربعة":"الدم، البلغم، الصفراء، السوداء — عناصر الجسم الطبية القديمة",
+  "البرزخيات":"العوالم الفاصلة بين الحياة والموت",
+  "الفؤاد":"أعمق تجاويف القلب — محل الإيمان الخالص والبصيرة الغيبية",
+  "الكشفيات":"العلوم التي تُقذف في القلب إلهاماً مباشراً بلا واسطة",
+  "الملكوت":"عالم الغيب — عالم الأرواح والملائكة",
+  "الجامع":"اسم أو حرف أو عدد يجمع طاقات متعددة في آنٍ واحد",
+  "السواقط":"الحروف الناتجة عن خوارزميات حسابية معينة في الزايرجة",
+  "شهادة الأزل":"الإقرار بوحدانية الله الموجود منذ بداية الخلق",
+  "الحضرة الربانية":"حالة الحضور القلبي والقرب الروحي العميق من الله",
+  "التصريف بالأسماء":"فن الاستخدام الروحاني لأسماء الله الحسنى لتحقيق أهداف محددة",
+};
+
+const ZODIAC_MAP = [
+  {z:"الحمل",el:"نارية",pl:"المريخ",mans:["المؤخر","الرشا","ثلث الشرطين"]},
+  {z:"الثور",el:"ترابية",pl:"الزهرة",mans:["ثلثا الشرطين","البطين","ثلثا الثريا"]},
+  {z:"الجوزاء",el:"هوائية",pl:"عطارد",mans:["ثلث الثريا","الدبران","الهقعة"]},
+  {z:"السرطان",el:"مائية",pl:"القمر",mans:["الهنعة","الذراع","النثرة"]},
+  {z:"الأسد",el:"نارية",pl:"الشمس",mans:["الطرفة","الجبهة","الزبرة"]},
+  {z:"العذراء",el:"ترابية",pl:"عطارد",mans:["الصرفة","العواء","السماك"]},
+  {z:"الميزان",el:"هوائية",pl:"الزهرة",mans:["الغفر","الزبانا","الإكليل"]},
+  {z:"العقرب",el:"مائية",pl:"المريخ",mans:["القلب","الشولة","النعائم"]},
+  {z:"القوس",el:"نارية",pl:"المشتري",mans:["البلدة","سعد الذابح","سعد بلع"]},
+  {z:"الجدي",el:"ترابية",pl:"زحل",mans:["سعد السعود","سعد الأخبية","فرغ المقدم"]},
+  {z:"الدلو",el:"هوائية",pl:"زحل",mans:["فرغ المؤخر","الرشا","بطن الحوت"]},
+  {z:"الحوت",el:"مائية",pl:"المشتري",mans:["الرشا","المؤخر","الشرطين"]},
+];
+
+const PLANETARY_HOURS = {
+  "الأحد":    ["الشمس","الزهرة","عطارد","القمر","زحل","المشتري","المريخ","الشمس","الزهرة","عطارد","القمر","زحل"],
+  "الاثنين":  ["القمر","زحل","المشتري","المريخ","الشمس","الزهرة","عطارد","القمر","زحل","المشتري","المريخ","الشمس"],
+  "الثلاثاء": ["المريخ","الشمس","الزهرة","عطارد","القمر","زحل","المشتري","المريخ","الشمس","الزهرة","عطارد","القمر"],
+  "الأربعاء": ["عطارد","القمر","زحل","المشتري","المريخ","الشمس","الزهرة","عطارد","القمر","زحل","المشتري","المريخ"],
+  "الخميس":   ["المشتري","المريخ","الشمس","الزهرة","عطارد","القمر","زحل","المشتري","المريخ","الشمس","الزهرة","عطارد"],
+  "الجمعة":   ["الزهرة","عطارد","القمر","زحل","المشتري","المريخ","الشمس","الزهرة","عطارد","القمر","زحل","المشتري"],
+  "السبت":    ["زحل","المشتري","المريخ","الشمس","الزهرة","عطارد","القمر","زحل","المشتري","المريخ","الشمس","الزهرة"],
+};
+const PLANET_USES = {
+  "الشمس":"المحبة والدخول على الحكام","القمر":"السفر والماء والأحلام",
+  "المريخ":"الفساد والحرب والغضب","عطارد":"العلم والكتابة والتجارة",
+  "المشتري":"الرزق والبركة والخير","الزهرة":"المحبة والزواج والجمال",
+  "زحل":"الفرقة والهدم والحفر",
+};
+const PLANET_COLORS = {
+  "الشمس":"#F4D03F","القمر":"#BDC3C7","المريخ":"#E74C3C",
+  "عطارد":"#95A5A6","المشتري":"#3498DB","الزهرة":"#27AE60","زحل":"#7F8C8D"
+};
+
+// ═══════════════════════════════════════════
+//   RENDER FUNCTIONS
+// ═══════════════════════════════════════════
+
+function showSection(id) {
+  document.querySelectorAll('.section-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  renderSection(id);
+}
+
+const rendered = new Set();
+function renderSection(id) {
+  if(rendered.has(id)) return;
+  rendered.add(id);
+  if(id==='chapters') renderChapters();
+  if(id==='letters') renderLetters();
+  if(id==='elements') renderElements();
+  if(id==='angels') renderAngels();
+  if(id==='planets') renderPlanets();
+  if(id==='cosmic') renderCosmic();
+  if(id==='planetary-hours') renderPlanetaryHours();
+  if(id==='mansions') renderMansions();
+  if(id==='zodiac') renderZodiac();
+  if(id==='laws') renderLaws();
+  if(id==='algorithm') renderAlgorithm();
+  if(id==='heart') renderHeart();
+  if(id==='asma') renderAsmaVault('all');
+  if(id==='asma-suggest') renderAsmaSuggest();
+  if(id==='glossary') renderGlossary();
+  if(id==='pages') renderPages();
+}
+
+function renderChapters() {
+  const el = document.getElementById('chapters-list');
+  el.innerHTML = Object.entries(CHAPTERS).map(([n,name])=>`
+    <div class="chapter-item">
+      <span class="chapter-num">${n}</span>
+      <span class="chapter-name">${name}</span>
+    </div>
+  `).join('');
+}
+
+function renderLetters() {
+  const grid = document.getElementById('letters-grid');
+  grid.innerHTML = LETTER_DATA.map(l=>`
+    <div class="letter-block" onclick="showLetterDetail(${JSON.stringify(l).replace(/"/g,'&quot;')})">
+      <span class="letter-char">${l.ch}</span>
+      <div class="letter-abjad">${l.ab}</div>
+      <div class="letter-el" style="color:${EL_COLORS[l.el]||'#888'}">${l.el}</div>
+    </div>
+  `).join('');
+}
+
+function showLetterDetail(l) {
+  document.getElementById('modal-title').textContent = `حرف ${l.ch} — أسراره الكاملة`;
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-row"><span class="lbl">العدد الأبجدي</span><span class="val" style="color:var(--gold);font-size:20px;font-family:Amiri">${l.ab}</span></div>
+    <div class="modal-row"><span class="lbl">الطبيعة</span><span class="val"><span class="el-badge ${EL_CLASS[l.el]||''}">${l.el}</span></span></div>
+    <div class="modal-row"><span class="lbl">الكوكب الحاكم</span><span class="val">${l.pl}</span></div>
+    <div class="modal-row"><span class="lbl">المنزلة القمرية</span><span class="val">${l.man}</span></div>
+    <div class="modal-row"><span class="lbl">الملاك الموكّل</span><span class="val">${l.angel}</span></div>
+    <div class="modal-row"><span class="lbl">الإضمار السري</span><span class="val" style="color:var(--aurora);font-family:Amiri;font-size:16px;">${l.code}</span></div>
+  `;
+  document.getElementById('detailModal').classList.add('open');
+}
+
+function renderElements() {
+  const data = [
+    {type:"نارية",arabic:"حارة",lets:"أ، هـ، ط، م، ف، ش، ذ",uses:"أعمال القهر، الغضب، الإلحاح العاجل",planet:"المريخ",cls:"el-fire",col:"#e74c3c"},
+    {type:"هوائية",arabic:"رطبة",lets:"ب، و، ي، ن، ص، ت، ض",uses:"أعمال المحبة، القبول، الانفتاح",planet:"الزهرة",cls:"el-air",col:"#74c0fc"},
+    {type:"مائية",arabic:"باردة",lets:"ج، ز، ك، س، ق، ث، ظ",uses:"أعمال العلم، الكشف، الاستشفاء",planet:"القمر",cls:"el-water",col:"#3bc9db"},
+    {type:"ترابية",arabic:"يابسة",lets:"د، ح، ل، ع، ر، خ، غ",uses:"أعمال الرزق، الثبات، الحفظ",planet:"زحل",cls:"el-earth",col:"#a67c52"},
+  ];
+  document.getElementById('elements-grid').innerHTML = data.map(d=>`
+    <div class="card" style="border-color:${d.col}33;">
+      <div class="card-title"><span class="el-badge ${d.cls}">${d.type} — ${d.arabic}</span></div>
+      <div style="font-family:Amiri;font-size:20px;color:var(--crystal);margin:12px 0;text-align:center;letter-spacing:4px;">${d.lets}</div>
+      <div class="card-subtitle">الاستخدامات</div>
+      <p style="font-size:12.5px;">${d.uses}</p>
+      <div style="margin-top:10px;"><span class="meta-tag">الكوكب الحاكم: ${d.planet}</span></div>
+    </div>
+  `).join('');
+}
+
+function renderAngels() {
+  document.getElementById('angels-body').innerHTML = LETTER_DATA.map(l=>`
+    <tr>
+      <td class="td-gold" style="font-family:Amiri;font-size:22px;">${l.ch}</td>
+      <td><span class="badge badge-abjad">${l.ab}</span></td>
+      <td><span class="el-badge ${EL_CLASS[l.el]||''}" style="font-size:10px;">${l.el}</span></td>
+      <td>${l.angel}</td>
+      <td style="color:var(--aurora);font-family:Amiri;font-size:15px;">${l.code}</td>
+      <td class="td-dim">${l.man}</td>
+    </tr>
+  `).join('');
+}
+
+function renderPlanets() {
+  document.getElementById('planets-grid').innerHTML = PLANETS.map(p=>`
+    <div class="planet-card ${p.cls}" onclick="showPlanetDetail(${JSON.stringify(p).replace(/"/g,'&quot;')})">
+      <div class="planet-name" style="color:${p.col}">⊙ ${p.name}</div>
+      <div class="planet-day">${p.day} — معدن: ${p.metal}</div>
+      <div class="planet-uses">${p.good}</div>
+      <div class="planet-meta">
+        <span class="meta-tag">حرف: ${p.let}</span>
+        <span class="meta-tag">عدد: ${p.num}</span>
+        <span class="meta-tag">وفق: ${p.wafq}</span>
+        <span class="meta-tag">ملاك: ${p.angel}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function showPlanetDetail(p) {
+  document.getElementById('modal-title').textContent = `كوكب ${p.name}`;
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-row"><span class="lbl">يوم الكوكب</span><span class="val">${p.day}</span></div>
+    <div class="modal-row"><span class="lbl">المعدن</span><span class="val">${p.metal}</span></div>
+    <div class="modal-row"><span class="lbl">العنصر</span><span class="val">${p.el}</span></div>
+    <div class="modal-row"><span class="lbl">الحرف الحاكم</span><span class="val" style="font-family:Amiri;font-size:22px;color:var(--gold)">${p.let}</span></div>
+    <div class="modal-row"><span class="lbl">الرقم الكوكبي</span><span class="val">${p.num}</span></div>
+    <div class="modal-row"><span class="lbl">شكل الوفق</span><span class="val">${p.wafq}</span></div>
+    <div class="modal-row"><span class="lbl">الملاك</span><span class="val">${p.angel}</span></div>
+    <div class="modal-row"><span class="lbl">البخور</span><span class="val" style="color:var(--aurora)">${p.inc}</span></div>
+    <div class="modal-row"><span class="lbl">الأعمال الصالحة</span><span class="val">${p.good}</span></div>
+  `;
+  document.getElementById('detailModal').classList.add('open');
+}
+
+function renderCosmic() {
+  const chain = document.getElementById('cosmic-chain');
+  chain.innerHTML = COSMIC.map((c,i)=>`
+    <div class="cosmic-node ${c.type}">
+      <div class="cosmic-node-name">${c.name}${c.letter?` <span style="color:var(--gold)">(${c.letter})</span>`:''}</div>
+    </div>
+    ${i<COSMIC.length-1?'<div class="cosmic-arrow">↓</div>':''}
+  `).join('');
+}
+
+function renderPlanetaryHours() {
+  const days = Object.keys(PLANETARY_HOURS);
+  let html = '<div style="overflow-x:auto;"><table class="shams-table"><thead><tr><th>الساعة</th>';
+  days.forEach(d=>html+=`<th>${d}</th>`);
+  html += '</tr></thead><tbody>';
+  for(let h=1;h<=12;h++) {
+    html+=`<tr><td class="td-gold">${h}</td>`;
+    days.forEach(d=>{
+      const pl = PLANETARY_HOURS[d][h-1];
+      const col = PLANET_COLORS[pl]||'#888';
+      html+=`<td style="color:${col};font-size:12px;" title="${PLANET_USES[pl]||''}">${pl}</td>`;
+    });
+    html+='</tr>';
+  }
+  html+='</tbody></table></div>';
+  document.getElementById('planetary-hours-table').innerHTML = html;
+}
+
+function renderMansions() {
+  const grid = document.getElementById('mansions-grid');
+  grid.innerHTML = MANSIONS.map(m=>{
+    const fc = m.fort==='سعد'||m.fort==='سعد جداً'?'saad':m.fort==='نحس'?'nahs':'mixed';
+    const bc = m.fort==='سعد'||m.fort==='سعد جداً'?'badge-saad':m.fort==='نحس'?'badge-nahs':'badge-mixed';
+    return `
+    <div class="mansion-card ${fc}" onclick="showMansionDetail(${JSON.stringify(m).replace(/"/g,'&quot;')})">
+      <div class="clearfix">
+        <span class="mansion-letter">${m.let}</span>
+        <div class="mansion-num">المنزلة ${m.n} — ${m.ab} أبجد</div>
+        <div class="mansion-name">${m.name}</div>
+      </div>
+      <span class="badge ${bc}">${m.fort}</span>
+      <div class="mansion-uses">${m.uses}</div>
+      <div class="mansion-incense">🌿 ${m.inc}</div>
+    </div>
+  `}).join('');
+}
+
+function showMansionDetail(m) {
+  document.getElementById('modal-title').textContent = `منزلة ${m.name}`;
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-row"><span class="lbl">رقم المنزلة</span><span class="val">${m.n} / ٢٨</span></div>
+    <div class="modal-row"><span class="lbl">الحرف المرتبط</span><span class="val" style="font-family:Amiri;font-size:22px;color:var(--gold)">${m.let} (${m.ab})</span></div>
+    <div class="modal-row"><span class="lbl">الطبيعة</span><span class="val"><span class="el-badge ${EL_CLASS[m.el]||''}">${m.el}</span></span></div>
+    <div class="modal-row"><span class="lbl">الحكم</span><span class="val"><span class="badge ${m.fort.includes('سعد')?'badge-saad':m.fort==='نحس'?'badge-nahs':'badge-mixed'}">${m.fort}</span></span></div>
+    <div class="modal-row"><span class="lbl">الاستخدامات</span><span class="val">${m.uses}</span></div>
+    <div class="modal-row"><span class="lbl">البخور</span><span class="val" style="color:var(--jade)">${m.inc}</span></div>
+    <div class="modal-row"><span class="lbl">المولود فيها</span><span class="val">${m.birth}</span></div>
+    <div class="modal-row"><span class="lbl">الملاك</span><span class="val">${m.angel}</span></div>
+    <div class="modal-row"><span class="lbl">عدد التكرار</span><span class="val" style="color:var(--aurora)">${m.count} مرة</span></div>
+  `;
+  document.getElementById('detailModal').classList.add('open');
+}
+
+function renderZodiac() {
+  document.getElementById('zodiac-body').innerHTML = ZODIAC_MAP.map(z=>`
+    <tr>
+      <td class="td-gold" style="font-family:Amiri;font-size:16px;">${z.z}</td>
+      <td><span class="el-badge ${EL_CLASS[z.el]||''}">${z.el}</span></td>
+      <td style="color:${PLANET_COLORS[z.pl]||'#888'}">${z.pl}</td>
+      <td style="color:var(--text-2);font-size:12px;">${z.mans.join(' ، ')}</td>
+    </tr>
+  `).join('');
+}
+
+function renderLaws() {
+  document.getElementById('laws-list').innerHTML = LAWS.map(l=>`
+    <div class="law-block">
+      <div class="law-name">⚖ ${l.name}</div>
+      <div class="law-form">${l.form}</div>
+      <div class="law-analogy">🔮 ${l.analogy}</div>
+      <div style="margin-top:6px;"><span class="meta-tag">الصفحة ${l.page}</span></div>
+    </div>
+  `).join('');
+}
+
+function renderAlgorithm() {
+  const steps = [
+    "جمع المتغيرات: اسم الشخص + الكوكب الحاكم + المنزلة القمرية + القمر",
+    "البسط (Decompilation): كتابة الحروف مفرقة — كل حرف على حدة",
+    "فرز الطبائع: تصنيف كل حرف (ناري، ترابي، هوائي، مائي)",
+    "حساب الغلبة: أي الطبائع أكثر في المجموع؟",
+    "توليد الكلمة المفتاحية: اسم الله المتوافق مع الطبيعة الغالبة",
+    "تصميم الوفق بالأرقام المحسوبة على شكل هندسي مناسب",
+    "قراءة العزيمة بالعدد المضبوط المستخرج من الحسابات",
+  ];
+  document.getElementById('algorithm-steps').innerHTML = steps.map((s,i)=>`
+    <div class="card" style="padding:12px 20px;margin-bottom:8px;display:flex;gap:14px;align-items:center;">
+      <span style="color:var(--gold);font-size:20px;font-weight:700;min-width:28px;">${i+1}</span>
+      <span style="color:var(--text-1);font-size:13.5px;">${s}</span>
+    </div>
+  `).join('');
+}
+
+function renderHeart() {
+  const layers = [
+    {name:"أعلى القلب",state:"الإسلام",perception:"المادي والمحسوس",function:"محل الإسلام والقوة الناطقة — تتشكل فيه المعاني",depth:1,col:"var(--jade)"},
+    {name:"وسط القلب",state:"الإيمان",perception:"الخيال والتأمل",function:"محل التفكر والسكينة والخيال — مقر العشق والرغبة الشديدة",depth:2,col:"var(--aurora)"},
+    {name:"الفؤاد",state:"الإحسان",perception:"الملكوت والغيب",function:"محل الإيمان الخالص، العقل التام، البصيرة التي ترى حقائق الغيب",depth:3,col:"var(--gold)"},
+  ];
+  document.getElementById('heart-layers').innerHTML = layers.map(l=>`
+    <div class="card" style="border-color:${l.col}44;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div class="card-title" style="color:${l.col};margin-bottom:0;">${l.name}</div>
+        <span class="badge badge-abjad">الطبقة ${l.depth}</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="card-subtitle">المقام الروحاني</div>
+          <p>${l.state}</p>
+        </div>
+        <div>
+          <div class="card-subtitle">القدرة الإدراكية</div>
+          <p>${l.perception}</p>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border-1);">
+        <p style="font-size:13px;color:var(--text-2)">${l.function}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderGlossary() {
+  document.getElementById('glossary-list').innerHTML = Object.entries(GLOSSARY).map(([term,def])=>`
+    <div class="glossary-item">
+      <div class="glossary-term">${term}</div>
+      <div class="glossary-def">${def}</div>
+    </div>
+  `).join('');
+}
+
+function renderPages() {
+  document.getElementById('pages-list').innerHTML = PAGES.map(p=>`
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div class="card-title">ص ${p.n} — ${p.title}</div>
+        <span class="meta-tag">${p.chapter}</span>
+      </div>
+      <p style="margin-bottom:12px;">${p.summary}</p>
+      <div style="background:rgba(245,200,66,0.05);border:1px solid var(--border-gold);border-radius:4px;padding:10px;margin-bottom:8px;">
+        <span style="color:var(--gold);font-size:11px;font-weight:700;">⚖ القانون: </span>
+        <span style="color:var(--text-2);font-size:12px;">${p.law}</span>
+      </div>
+      <div style="color:var(--text-3);font-size:11px;font-style:italic;">🔮 ${p.analogy}</div>
+    </div>
+  `).join('');
+}
+
+function closeModal() {
+  document.getElementById('detailModal').classList.remove('open');
+}
+document.getElementById('detailModal').addEventListener('click', e=>{
+  if(e.target===e.currentTarget) closeModal();
+});
+
+function searchContent(q) {
+  if(!q.trim()) return;
+  // Simple highlight — could be expanded
+}
+
+// Init
+renderSection('intro');
+</script>
+</body>
+</html>

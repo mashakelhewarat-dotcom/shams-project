@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التشخيص — شمس المعارف الكبرى</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #06040f;
+  --bg2:        #0c0818;
+  --bg3:        #120c24;
+  --aurora:     #c084fc;
+  --aurora2:    #818cf8;
+  --gold:       #f5c842;
+  --jade:       #10b981;
+  --crimson:    #ef4444;
+  --amber:      #f59e0b;
+  --ice:        #bae6fd;
+  --text:       #f0eaff;
+  --text2:      #a78bca;
+  --text3:      #5b4a7a;
+  --glass:      rgba(12, 8, 24, 0.92);
+  --border:     rgba(192,132,252,0.15);
+  --border2:    rgba(192,132,252,0.35);
+  --ok:         #10b981;
+  --warning:    #f59e0b;
+  --error:      #ef4444;
+  --critical:   #dc2626;
+  --unknown:    #6b7280;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Cairo', sans-serif;
+  overflow-x:hidden;
+}
+
+/* Grain */
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.35; mix-blend-mode:overlay;
+}
+
+.container { max-width:1400px; margin:0 auto; padding:24px 16px; }
+
+/* ── HEADER ── */
+.header {
+  text-align:center;
+  padding:40px 0 32px;
+  position:relative;
+}
+.header-title {
+  font-size:clamp(1.6rem,4vw,2.8rem);
+  font-weight:900;
+  background:linear-gradient(135deg, var(--aurora) 0%, var(--gold) 60%, var(--aurora2) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  letter-spacing:.05em;
+}
+.header-sub {
+  margin-top:8px; font-size:.9rem;
+  color:var(--text2); font-family:'Space Mono', monospace;
+  letter-spacing:.1em;
+}
+.header-badge {
+  display:inline-block; margin-top:12px;
+  padding:4px 16px; border-radius:999px;
+  border:1px solid var(--border2);
+  font-size:.75rem; color:var(--aurora);
+  background:rgba(192,132,252,.08);
+  font-family:'Space Mono', monospace;
+  letter-spacing:.12em;
+}
+
+/* ── SCORE RING ── */
+.score-section {
+  display:flex; justify-content:center; align-items:center;
+  gap:40px; flex-wrap:wrap;
+  padding:32px 0;
+}
+.score-ring-wrap { position:relative; width:180px; height:180px; flex-shrink:0; }
+.score-ring-wrap svg { width:100%; height:100%; transform:rotate(-90deg); }
+.score-ring-bg  { fill:none; stroke:rgba(192,132,252,.1); stroke-width:10; }
+.score-ring-fg  { fill:none; stroke-width:10; stroke-linecap:round;
+                  transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1); }
+.score-center {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+}
+.score-number { font-size:2.8rem; font-weight:900; line-height:1; }
+.score-label  { font-size:.7rem; color:var(--text2); letter-spacing:.08em; margin-top:4px; }
+
+.score-meta { max-width:360px; }
+.score-status-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 20px; border-radius:12px;
+  font-size:1rem; font-weight:700; margin-bottom:16px;
+  border:1.5px solid currentColor;
+}
+.score-status-badge.ok       { color:var(--ok);      background:rgba(16,185,129,.1); }
+.score-status-badge.warning  { color:var(--warning);  background:rgba(245,158,11,.1); }
+.score-status-badge.error    { color:var(--error);    background:rgba(239,68,68,.1); }
+.score-status-badge.critical { color:var(--critical); background:rgba(220,38,38,.12); }
+.score-status-badge.unknown  { color:var(--unknown);  background:rgba(107,114,128,.1); }
+
+.score-desc { font-size:.9rem; color:var(--text2); line-height:1.7; }
+
+.counts-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; }
+.count-chip {
+  padding:6px 14px; border-radius:8px; font-size:.78rem;
+  font-weight:700; font-family:'Space Mono',monospace;
+  border:1px solid currentColor; opacity:.85;
+}
+.count-chip.ok       { color:var(--ok);      background:rgba(16,185,129,.08); }
+.count-chip.warning  { color:var(--warning);  background:rgba(245,158,11,.08); }
+.count-chip.error    { color:var(--error);    background:rgba(239,68,68,.08); }
+.count-chip.critical { color:var(--critical); background:rgba(220,38,38,.08); }
+
+/* ── CONTROLS ── */
+.controls {
+  display:flex; gap:12px; flex-wrap:wrap;
+  justify-content:center; padding-bottom:28px;
+}
+.btn {
+  padding:10px 24px; border-radius:10px; cursor:pointer;
+  font-family:'Cairo',sans-serif; font-size:.9rem; font-weight:700;
+  border:1.5px solid var(--border2); transition:all .2s;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-primary {
+  background:linear-gradient(135deg,rgba(192,132,252,.25),rgba(129,140,248,.15));
+  color:var(--aurora); border-color:rgba(192,132,252,.4);
+}
+.btn-primary:hover { background:linear-gradient(135deg,rgba(192,132,252,.35),rgba(129,140,248,.25)); }
+.btn-ghost { background:rgba(255,255,255,.03); color:var(--text2); }
+.btn-ghost:hover { background:rgba(255,255,255,.07); color:var(--text); }
+.btn:disabled { opacity:.4; cursor:not-allowed; }
+
+.spin { animation:spin .8s linear infinite; display:inline-block; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── CATEGORY TABS ── */
+.tabs-bar {
+  display:flex; gap:6px; flex-wrap:wrap;
+  padding:0 0 20px; border-bottom:1px solid var(--border);
+  margin-bottom:24px;
+}
+.tab {
+  padding:7px 18px; border-radius:8px; cursor:pointer;
+  font-size:.82rem; font-weight:600; border:1px solid var(--border);
+  background:transparent; color:var(--text2); transition:all .18s;
+}
+.tab.active, .tab:hover {
+  border-color:var(--border2); color:var(--aurora);
+  background:rgba(192,132,252,.08);
+}
+
+/* ── RESULTS GRID ── */
+.results-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(340px,1fr));
+  gap:16px;
+}
+
+/* ── RESULT CARD ── */
+.card {
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:16px; padding:20px;
+  backdrop-filter:blur(16px);
+  transition:border-color .2s, transform .2s;
+  position:relative; overflow:hidden;
+}
+.card::before {
+  content:''; position:absolute; inset:0;
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(192,132,252,.03),transparent);
+  pointer-events:none;
+}
+.card:hover { transform:translateY(-2px); border-color:var(--border2); }
+.card.ok       { border-left:3px solid var(--ok); }
+.card.warning  { border-left:3px solid var(--warning); }
+.card.error    { border-left:3px solid var(--error); }
+.card.critical { border-left:3px solid var(--critical);
+                  box-shadow:0 0 20px rgba(220,38,38,.15); }
+.card.unknown  { border-left:3px solid var(--unknown); }
+
+.card-header { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
+.card-icon {
+  width:36px; height:36px; border-radius:10px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+}
+.card-icon.ok       { background:rgba(16,185,129,.15);  color:var(--ok); }
+.card-icon.warning  { background:rgba(245,158,11,.15);  color:var(--warning); }
+.card-icon.error    { background:rgba(239,68,68,.15);   color:var(--error); }
+.card-icon.critical { background:rgba(220,38,38,.18);   color:var(--critical); }
+.card-icon.unknown  { background:rgba(107,114,128,.15); color:var(--unknown); }
+
+.card-title { font-size:.88rem; font-weight:700; color:var(--text); font-family:'Space Mono',monospace; }
+.card-cat   { font-size:.7rem; color:var(--text3); margin-top:2px; letter-spacing:.06em; }
+
+.card-status-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.status-pill {
+  padding:3px 12px; border-radius:999px; font-size:.72rem; font-weight:700;
+  font-family:'Space Mono',monospace;
+}
+.status-pill.ok       { background:rgba(16,185,129,.15);  color:var(--ok); }
+.status-pill.warning  { background:rgba(245,158,11,.15);  color:var(--warning); }
+.status-pill.error    { background:rgba(239,68,68,.15);   color:var(--error); }
+.status-pill.critical { background:rgba(220,38,38,.18);   color:var(--critical); }
+.status-pill.unknown  { background:rgba(107,114,128,.15); color:var(--unknown); }
+
+.card-score-bar { height:4px; background:rgba(255,255,255,.06); border-radius:4px; overflow:hidden; }
+.card-score-fill { height:100%; border-radius:4px; transition:width 1s ease; }
+.card-score-fill.ok       { background:var(--ok); }
+.card-score-fill.warning  { background:var(--warning); }
+.card-score-fill.error    { background:var(--error); }
+.card-score-fill.critical { background:var(--critical); }
+.card-score-fill.unknown  { background:var(--unknown); }
+
+.card-msg { font-size:.82rem; color:var(--text2); margin-top:10px; line-height:1.6; }
+.card-time { font-size:.68rem; color:var(--text3); margin-top:8px; font-family:'Space Mono',monospace; }
+
+.card-details {
+  margin-top:12px; padding:10px; border-radius:10px;
+  background:rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.05);
+  font-size:.72rem; font-family:'Space Mono',monospace; color:var(--text3);
+  max-height:140px; overflow-y:auto; line-height:1.7;
+}
+.card-details .dk { color:var(--text2); }
+.card-details .dv { color:var(--ice); }
+
+.expand-btn {
+  background:none; border:none; cursor:pointer;
+  font-size:.7rem; color:var(--text3); padding:4px 0;
+  margin-top:6px; text-decoration:underline; font-family:'Cairo',sans-serif;
+}
+.expand-btn:hover { color:var(--aurora); }
+
+/* ── TIMESTAMP ROW ── */
+.ts-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 0; border-top:1px solid var(--border);
+  margin-top:28px; flex-wrap:wrap; gap:8px;
+}
+.ts-item { font-size:.75rem; color:var(--text3); font-family:'Space Mono',monospace; }
+.ts-item span { color:var(--text2); }
+
+/* ── PLACEHOLDER ── */
+.placeholder {
+  text-align:center; padding:80px 20px;
+  color:var(--text3); font-size:1rem;
+}
+.placeholder-icon { font-size:3rem; margin-bottom:16px; opacity:.4; }
+
+/* ── LOADING BAR ── */
+.loading-bar {
+  position:fixed; top:0; left:0; right:0; height:3px; z-index:10000;
+  background:linear-gradient(90deg, var(--aurora), var(--gold), var(--aurora2));
+  background-size:200% 100%;
+  animation:shimmer 1s linear infinite;
+  display:none;
+}
+.loading-bar.active { display:block; }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* ── BACK LINK ── */
+.back-link {
+  display:inline-flex; align-items:center; gap:6px;
+  color:var(--text2); font-size:.82rem; text-decoration:none;
+  padding:8px 16px; border-radius:8px; border:1px solid var(--border);
+  transition:all .2s; margin-bottom:24px;
+}
+.back-link:hover { color:var(--aurora); border-color:var(--border2); }
+
+/* ── RESPONSIVE ── */
+@media (max-width:600px) {
+  .results-grid { grid-template-columns:1fr; }
+  .score-section { flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="loading-bar" id="loadingBar"></div>
+
+<div class="container">
+
+  <a href="/" class="back-link">← العودة للرئيسية</a>
+
+  <div class="header">
+    <div class="header-title">⚙ لوحة التشخيص الشاملة</div>
+    <div class="header-sub">SHAMS AL-MA'ARIF · SYSTEM DIAGNOSTICS</div>
+    <div class="header-badge" id="versionBadge">v1.0.0</div>
+  </div>
+
+  <!-- Score Section -->
+  <div class="score-section">
+    <div class="score-ring-wrap">
+      <svg viewBox="0 0 180 180">
+        <circle class="score-ring-bg" cx="90" cy="90" r="75"/>
+        <circle class="score-ring-fg" id="scoreRingFg" cx="90" cy="90" r="75"
+                stroke="#c084fc"
+                stroke-dasharray="471"
+                stroke-dashoffset="471"/>
+      </svg>
+      <div class="score-center">
+        <div class="score-number" id="scoreNumber" style="color:#c084fc">—</div>
+        <div class="score-label">HEALTH SCORE</div>
+      </div>
+    </div>
+
+    <div class="score-meta">
+      <div class="score-status-badge unknown" id="statusBadge">
+        <span>⏳</span> في الانتظار
+      </div>
+      <div class="score-desc" id="scoreDesc">اضغط "تشغيل الفحص" لبدء التشخيص الكامل</div>
+      <div class="counts-row" id="countsRow"></div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="btn btn-primary" id="runBtn" onclick="runDiag()">
+      <span>▶</span> تشغيل الفحص الكامل
+    </button>
+    <button class="btn btn-ghost" onclick="copyReport()">⎘ نسخ التقرير</button>
+    <button class="btn btn-ghost" onclick="window.print()">⎙ طباعة</button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-bar" id="tabsBar"></div>
+
+  <!-- Results Grid -->
+  <div class="results-grid" id="resultsGrid">
+    <div class="placeholder" style="grid-column:1/-1">
+      <div class="placeholder-icon">🔮</div>
+      <div>لا توجد نتائج بعد — قم بتشغيل الفحص</div>
+    </div>
+  </div>
+
+  <!-- Timestamp Row -->
+  <div class="ts-row" id="tsRow" style="display:none">
+    <div class="ts-item">⏱ وقت التشخيص: <span id="tsElapsed">—</span></div>
+    <div class="ts-item">🕐 <span id="tsTime">—</span></div>
+    <div class="ts-item">📊 إجمالي الفحوصات: <span id="tsTotal">—</span></div>
+  </div>
+
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════
+let lastReport   = null;
+let activeTab    = 'all';
+let allResults   = [];
+
+// ══════════════════════════════════════════════════════════════
+// ICONS & LABELS
+// ══════════════════════════════════════════════════════════════
+const CATEGORY_ICONS = {
+  module:     '📦',
+  algorithm:  '🧮',
+  data:       '🗄',
+  filesystem: '📁',
+  system:     '💻',
+  api:        '🔗',
+  security:   '🔐',
+  all:        '🔮',
+};
+const STATUS_ICONS = { ok:'✓', warning:'⚠', error:'✕', critical:'💀', unknown:'?' };
+const STATUS_LABELS_AR = { ok:'سليم', warning:'تحذير', error:'خطأ', critical:'حرج', unknown:'مجهول' };
+const CATEGORY_LABELS_AR = {
+  module:'الموديولات', algorithm:'الخوارزميات', data:'البيانات',
+  filesystem:'الملفات', system:'النظام', api:'الـ API', security:'الأمان', all:'الكل'
+};
+
+// ══════════════════════════════════════════════════════════════
+// MAIN RUN
+// ══════════════════════════════════════════════════════════════
+async function runDiag() {
+  const btn = document.getElementById('runBtn');
+  const bar = document.getElementById('loadingBar');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">⟳</span> جاري الفحص…';
+  bar.classList.add('active');
+
+  try {
+    const r = await fetch('/api/diagnostics', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:'{}'
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    lastReport = data;
+    renderReport(data);
+  } catch(e) {
+    renderError(e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span>▶</span> إعادة الفحص';
+    bar.classList.remove('active');
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// RENDER REPORT
+// ══════════════════════════════════════════════════════════════
+function renderReport(data) {
+  allResults = data.results || [];
+
+  // Score ring
+  animateScore(data.overall_score, data.overall_status);
+
+  // Status badge
+  const badge = document.getElementById('statusBadge');
+  badge.className = `score-status-badge ${data.overall_status}`;
+  badge.innerHTML = `<span>${STATUS_ICONS[data.overall_status]}</span> ${data.summary?.score_label || ''}`;
+
+  // Desc
+  document.getElementById('scoreDesc').textContent =
+    `${data.total_checks} فحص مكتمل · ${data.elapsed_total}ث`;
+
+  // Counts
+  const sc = data.status_counts || {};
+  document.getElementById('countsRow').innerHTML =
+    Object.entries(sc).filter(([k])=>k!=='unknown'||sc[k]>0).map(([k,v])=>
+      v > 0 ? `<div class="count-chip ${k}">${v} ${STATUS_LABELS_AR[k]||k}</div>` : ''
+    ).join('');
+
+  // Version badge
+  document.getElementById('versionBadge').textContent = `v${data.version} · ${formatTime(data.timestamp)}`;
+
+  // Build tabs from categories
+  const cats = ['all', ...Object.keys(data.by_category || {})];
+  const tabsBar = document.getElementById('tabsBar');
+  tabsBar.innerHTML = cats.map(c=>
+    `<button class="tab ${c===activeTab?'active':''}"
+      onclick="switchTab('${c}')">${CATEGORY_ICONS[c]||'•'} ${CATEGORY_LABELS_AR[c]||c}</button>`
+  ).join('');
+
+  // Render cards
+  renderCards(allResults, activeTab);
+
+  // Timestamp row
+  document.getElementById('tsElapsed').textContent = data.elapsed_total + 'ث';
+  document.getElementById('tsTime').textContent = formatTime(data.timestamp);
+  document.getElementById('tsTotal').textContent = data.total_checks;
+  document.getElementById('tsRow').style.display = 'flex';
+}
+
+function switchTab(cat) {
+  activeTab = cat;
+  // Update tab buttons
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.textContent.includes(CATEGORY_LABELS_AR[cat]||cat) ||
+      (cat==='all' && t.textContent.includes('الكل')));
+  });
+  renderCards(allResults, cat);
+}
+
+function renderCards(results, cat) {
+  const grid = document.getElementById('resultsGrid');
+  const filtered = cat === 'all' ? results : results.filter(r => r.category === cat);
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="placeholder" style="grid-column:1/-1">
+      <div class="placeholder-icon">📭</div><div>لا توجد نتائج في هذه الفئة</div>
+    </div>`;
+    return;
+  }
+
+  // Sort: critical first, then error, warning, ok
+  const order = {critical:0, error:1, warning:2, unknown:3, ok:4};
+  const sorted = [...filtered].sort((a,b) => (order[a.status]||5) - (order[b.status]||5));
+
+  grid.innerHTML = sorted.map((r,i) => cardHTML(r,i)).join('');
+}
+
+function cardHTML(r, idx) {
+  const detailsJSON = r.details && Object.keys(r.details).length > 0
+    ? JSON.stringify(r.details, null, 2) : null;
+
+  const detailsHTML = detailsJSON
+    ? formatDetails(r.details) : '';
+
+  return `
+  <div class="card ${r.status}" style="animation:fadeInUp .3s ${idx*0.04}s both">
+    <div class="card-header">
+      <div class="card-icon ${r.status}">${STATUS_ICONS[r.status]||'?'}</div>
+      <div>
+        <div class="card-title">${r.name}</div>
+        <div class="card-cat">${CATEGORY_ICONS[r.category]||''} ${CATEGORY_LABELS_AR[r.category]||r.category}</div>
+      </div>
+    </div>
+    <div class="card-status-row">
+      <div class="status-pill ${r.status}">${STATUS_LABELS_AR[r.status]||r.status}</div>
+      <div style="font-size:.8rem;color:var(--text3);font-family:'Space Mono',monospace">${r.score}/100</div>
+    </div>
+    <div class="card-score-bar">
+      <div class="card-score-fill ${r.status}" style="width:${r.score}%"></div>
+    </div>
+    <div class="card-msg">${r.message}</div>
+    ${detailsHTML ? `
+      <button class="expand-btn" onclick="toggleDetails(this)">▾ عرض التفاصيل</button>
+      <div class="card-details" style="display:none">${detailsHTML}</div>
+    ` : ''}
+    <div class="card-time">⏱ ${(r.elapsed*1000).toFixed(1)}ms</div>
+  </div>`;
+}
+
+function formatDetails(details) {
+  return Object.entries(details).map(([k,v]) => {
+    const val = Array.isArray(v) ? v.join(', ') :
+                typeof v === 'object' ? JSON.stringify(v) : String(v);
+    return `<div><span class="dk">${k}:</span> <span class="dv">${escapeHTML(val)}</span></div>`;
+  }).join('');
+}
+
+function toggleDetails(btn) {
+  const det = btn.nextElementSibling;
+  const open = det.style.display !== 'none';
+  det.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? '▾ عرض التفاصيل' : '▴ إخفاء التفاصيل';
+}
+
+// ══════════════════════════════════════════════════════════════
+// SCORE ANIMATION
+// ══════════════════════════════════════════════════════════════
+function animateScore(score, status) {
+  const el      = document.getElementById('scoreNumber');
+  const ring    = document.getElementById('scoreRingFg');
+  const circumf = 2 * Math.PI * 75; // r=75
+
+  const colorMap = {
+    ok:'#10b981', warning:'#f59e0b', error:'#ef4444', critical:'#dc2626', unknown:'#6b7280'
+  };
+  const col = colorMap[status] || '#c084fc';
+
+  ring.style.stroke = col;
+  el.style.color    = col;
+
+  const offset = circumf - (score / 100) * circumf;
+  ring.style.strokeDasharray  = circumf;
+  ring.style.strokeDashoffset = circumf; // start at 0
+
+  let current = 0;
+  const step = () => {
+    if (current < score) {
+      current = Math.min(current + 2, score);
+      el.textContent = current;
+      ring.style.strokeDashoffset = circumf - (current/100)*circumf;
+      requestAnimationFrame(step);
+    }
+  };
+  requestAnimationFrame(step);
+}
+
+// ══════════════════════════════════════════════════════════════
+// UTILITIES
+// ══════════════════════════════════════════════════════════════
+function renderError(msg) {
+  document.getElementById('resultsGrid').innerHTML = `
+    <div class="placeholder" style="grid-column:1/-1">
+      <div class="placeholder-icon" style="color:var(--error)">✕</div>
+      <div style="color:var(--error)">فشل الاتصال بالخادم</div>
+      <div style="font-size:.8rem;color:var(--text3);margin-top:8px">${escapeHTML(msg)}</div>
+      <div style="font-size:.8rem;color:var(--text3);margin-top:4px">تأكد من تشغيل python app.py</div>
+    </div>`;
+}
+
+function copyReport() {
+  if (!lastReport) return;
+  navigator.clipboard.writeText(JSON.stringify(lastReport, null, 2))
+    .then(() => alert('✓ تم نسخ التقرير'))
+    .catch(() => alert('فشل النسخ'));
+}
+
+function formatTime(iso) {
+  if (!iso) return '—';
+  try { return new Date(iso).toLocaleString('ar-EG'); }
+  catch { return iso; }
+}
+
+function escapeHTML(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// CSS animation
+const style = document.createElement('style');
+style.textContent = `@keyframes fadeInUp {
+  from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)}
+}`;
+document.head.appendChild(style);
+
+// Auto-run on load
+window.addEventListener('load', () => setTimeout(runDiag, 400));
+</script>
+</body>
+</html>
